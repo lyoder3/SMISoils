@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMISoilUI", "SMISoilUI\SMISoilUI.csproj", "{DD66D517-489C-48B9-81B1-07C58053F91C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoilLibrary", "..\..\..\SoilLibrary\SoilLibrary.csproj", "{F1D304E6-C140-4C76-841D-6FA9710D9AA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoilLibrary", "SoilLibrary\SoilLibrary.csproj", "{F1D304E6-C140-4C76-841D-6FA9710D9AA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

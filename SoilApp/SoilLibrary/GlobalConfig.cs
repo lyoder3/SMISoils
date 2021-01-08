@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoilLibrary.DataAccess;
-using SoilLibrary.Utilities;
-using System.Configuration;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
+using Google.Apis.Util.Store;
+using SoilLibrary.DataAccess;
+using System;
+using System.Configuration;
 using System.IO;
 using System.Threading;
-using Google.Apis.Util.Store;
-using Google.Apis.Services;
 
 namespace SoilLibrary
 {
@@ -22,7 +17,7 @@ namespace SoilLibrary
         public static SheetsService SheetsService { get; private set; }
 
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
-        
+
         public static void InitializeConnection()
         {
             SQLConnector sql = new SQLConnector();

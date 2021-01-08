@@ -1,10 +1,7 @@
-﻿using System;
+﻿using SoilLibrary.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using SoilLibrary.Models;
+using System.Linq;
 
 namespace SoilLibrary.Utilities
 {
@@ -30,9 +27,9 @@ namespace SoilLibrary.Utilities
             return allLines;
         }
         public IList<SoilSampleModel> Process()
-        {   
+        {
             // TODO - Write code to process soil sample files
-            
+
             return new List<SoilSampleModel>();
         }
     }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoilLibrary.Models;
-using SoilLibrary.DataAccess;
-using SoilLibrary;
-using System.IO;
+﻿using SoilLibrary;
 using SoilLibrary.Utilities;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace SoilsConsoleAppTest
 {

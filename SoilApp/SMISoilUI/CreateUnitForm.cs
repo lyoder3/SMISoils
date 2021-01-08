@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SoilLibrary;
+using SoilLibrary.Factories;
 using SoilLibrary.Models;
-using SoilLibrary;
+using System;
+using System.Windows.Forms;
 
 namespace SMISoilUI
 {
@@ -21,18 +15,19 @@ namespace SMISoilUI
 
         private void createUnitButton_Click(object sender, EventArgs e)
         {
-            UnitModel model = new UnitModel();
+            IUnitModel model = ModelFactory.CreateUnitModel();
             model.Unit = unitValue.Text;
 
-            model = GlobalConfig.Connection.CreateUnit(model);
+            GlobalConfig.Connection.CreateUnit(model);
 
-            if (model.Id >= 1) {
+            if (model.Id >= 1)
+            {
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Unit creation failed");
-            }   
+            }
         }
     }
 }

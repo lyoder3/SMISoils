@@ -8,7 +8,7 @@ namespace SoilLibrary.Utilities
     public class GoogleSheetConnector
     {
         public string SpreadsheetId { get; private set; }
- 
+
         public GoogleSheetConnector(string spreadsheetId)
         {
             SpreadsheetId = spreadsheetId;
@@ -33,12 +33,12 @@ namespace SoilLibrary.Utilities
             }
         }
 
-        public void WriteValues(List<IList<Object>> values, string sheetRange)
+        public void WriteValues(IList<IList<Object>> values, string sheetRange)
         {
             ValueRange updateRange = new ValueRange
             {
                 Range = sheetRange,
-                Values = values
+                Values = values,
             };
 
             SpreadsheetsResource.ValuesResource.UpdateRequest request = GlobalConfig.SheetsService.Spreadsheets

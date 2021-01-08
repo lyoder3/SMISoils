@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SoilLibrary.DataAccess;
+using System;
 using System.Windows.Forms;
-using SoilLibrary.DataAccess;
 
 namespace SMISoilUI
 {
@@ -26,16 +19,8 @@ namespace SMISoilUI
 
         private void masterSheetSyncButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MasterSheet.UpsertFieldsAndRotations();
-                MessageBox.Show("Master Sheet sync successful!");
-            }catch (Exception exception)
-            {
-                MessageBox.Show("Master sheet sync failed.");
-                Console.WriteLine(exception.StackTrace);
-            }
-
+            MasterSheet.UpsertFieldsAndRotations();
+            MessageBox.Show("Master Sheet sync successful!");
         }
 
         private void createSoilSampleFormButton_Click(object sender, EventArgs e)

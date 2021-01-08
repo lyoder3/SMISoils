@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SoilLibrary.Models
 {
-    public class AnalysisModel : ITimeboundObject
+    public class AnalysisModel : ITimeboundObject, IAnalysisModel
     {
         /// <summary>
         /// Unique id from database

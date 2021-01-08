@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SoilLibrary.Models
+﻿namespace SoilLibrary.Models
 {
-    public class DimensionedQuantityTypeModel : IDatabaseObjectModel
+    public class DimensionedQuantityTypeModel : IDimensionedQuantityTypeModel
     {
         /// <summary>
         /// Type id

@@ -10,12 +10,13 @@ namespace SoilLibrary.DataAccess
     public class SQLConnector : IDataConnection
     {
         private const string db = "Soil";
-        public AnalysisModel CreateAnalysis(AnalysisModel model)
+
+        public void CreateAnalysis(IAnalysisModel model)
         {
             throw new System.NotImplementedException();
         }
 
-        public DimensionedQuantityModel CreateDimensionedQuantity(DimensionedQuantityModel model)
+        public void CreateDimensionedQuantity(IDimensionedQuantityModel model)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -25,16 +26,14 @@ namespace SoilLibrary.DataAccess
                 p.Add("@TypeId", model.TypeId);
                 p.Add("@id", model.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
 
-                connection.Execute("dbo.spDimensionedQuantities_Insert", p, 
+                connection.Execute("dbo.spDimensionedQuantities_Insert", p,
                     commandType: CommandType.StoredProcedure);
 
                 model.Id = p.Get<int>("@id");
-
-                return model;
             }
         }
 
-        public FieldModel CreateField(FieldModel model)
+        public void CreateField(IFieldModel model)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -46,37 +45,30 @@ namespace SoilLibrary.DataAccess
                 connection.Execute("dbo.spFields_Upsert", p, commandType: CommandType.StoredProcedure);
 
                 model.Id = p.Get<int>("@id");
-
-                return model;
             }
         }
 
-        public OperationModel CreateOperation(OperationModel model)
+        public void CreateOperation(OperationModel model)
         {
             throw new System.NotImplementedException();
         }
 
-        public RotationModel CreateRotation(RotationModel model)
+        public void CreateRotation_Batch(IList<IRotationModel> models)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void CreateRotation_Batch(List<RotationModel> models)
-        {
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString("Soil")))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
-                connection.Execute("dbo.spRotations_Upsert", models, commandType:CommandType.StoredProcedure);
+                connection.Execute("dbo.spRotations_Upsert", models, commandType: CommandType.StoredProcedure);
             }
         }
 
-        public SoilSampleModel CreateSoilSample(SoilSampleModel model)
+        public void CreateSoilSample(SoilSampleModel model)
         {
             throw new System.NotImplementedException();
         }
 
-        public UnitModel CreateUnit(UnitModel model)
+        public void CreateUnit(IUnitModel model)
         {
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString("Soil")))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@Unit", model.Unit);
@@ -92,11 +84,7 @@ namespace SoilLibrary.DataAccess
                     throw new System.Exception(e.Message);
                 }
                 model.Id = p.Get<int>("@id");
-                return model;
             }
-            
-
-            
         }
 
         public int GetDimensionedQuantityTypeId_ByName(string name)
@@ -113,9 +101,9 @@ namespace SoilLibrary.DataAccess
             }
         }
 
-        public List<DimensionedQuantityTypeModel> GetDimensionedQuantityType_All()
+        public IList<DimensionedQuantityTypeModel> GetDimensionedQuantityType_All()
         {
-            List<DimensionedQuantityTypeModel> output;
+            IList<DimensionedQuantityTypeModel> output;
 
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -127,7 +115,7 @@ namespace SoilLibrary.DataAccess
             return output;
         }
 
-        public List<DimensionedQuantityModel> GetDimensionedQuantity_ByType(int typeId)
+        public IList<DimensionedQuantityModel> GetDimensionedQuantity_ByType(int typeId)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -138,9 +126,9 @@ namespace SoilLibrary.DataAccess
                     commandType: CommandType.StoredProcedure).ToList();
             }
         }
-        public List<UnitModel> GetUnit_All()
+        public IList<UnitModel> GetUnit_All()
         {
-            List<UnitModel> output;
+            IList<UnitModel> output;
 
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {

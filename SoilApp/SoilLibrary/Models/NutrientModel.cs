@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SoilLibrary.Models
 {
-    public class NutrientModel : DimensionedQuantityModel
+    public class NutrientModel : INutrientModel
     {
-        /// <summary>
-        /// Amount of nutrient on a field or in a product
-        /// </summary>
         public decimal Amount { get; set; }
-        /// <summary>
-        /// The goal level for a nutrient on a field
-        /// Amount + Recommendation = Goal
-        /// </summary>
+
         public int Goal { get; set; }
-        /// <summary>
-        /// The recommended amount of a nutrient to add to hit the goal
-        /// </summary>
+
         public int Recommendation { get; set; }
+        public string ItemName { get; set; }
+        public int TypeId { get; set; }
+        public int UnitId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Constructor for creating blank objects of the class
@@ -54,7 +48,7 @@ namespace SoilLibrary.Models
         /// <param name="unitId">Id for units that numbers are recorded in</param>
         /// <param name="amount">Amount of the nutrient on the field</param>
         /// <param name="recommendation">Recommended level for the field</param>
-        public NutrientModel(int id, string nutrient, int unitId, decimal amount, 
+        public NutrientModel(int id, string nutrient, int unitId, decimal amount,
             decimal recommendation) : this(id, nutrient, unitId, amount)
         {
             Recommendation = Convert.ToInt32(recommendation);

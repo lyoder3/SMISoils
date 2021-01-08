@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SoilLibrary;
+using System;
 using System.Windows.Forms;
-using SoilLibrary;
 
 namespace SMISoilUI
 {
     static class Program
     {
+        // TODO - Comment everything with XML comments 
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,7 +17,7 @@ namespace SMISoilUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             GlobalConfig.InitializeConnection();
-            Application.Run(new CreateMenuForm());
+            Application.Run(new HomeForm());
         }
     }
 }

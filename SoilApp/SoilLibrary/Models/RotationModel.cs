@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SoilLibrary.Models
+﻿namespace SoilLibrary.Models
 {
-    public class RotationModel : IDatabaseObjectModel
+    public class RotationModel : IRotationModel
     {
         /// <summary>
         /// Unique id for this object from database

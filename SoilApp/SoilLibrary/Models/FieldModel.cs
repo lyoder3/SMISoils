@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SoilLibrary.Models
 {
-    public class FieldModel : IDatabaseObjectModel
+    public class FieldModel : IFieldModel
     {
         /// <summary>
         /// Unique id for field record in database
         /// </summary>
-        public int Id { get; set; } = -1;
+        public int Id { get; set; }
         /// <summary>
         /// Farm name
         /// </summary>
@@ -21,11 +19,11 @@ namespace SoilLibrary.Models
         /// <summary>
         /// List of nutrient objects and their respective data for the field
         /// </summary>
-        public List<NutrientModel> Nutrients { get; set; }
+        public IList<INutrientModel> Nutrients { get; set; }
         /// <summary>
         /// List of rotation entries (historic and future)
         /// </summary>
-        public List<RotationModel> Rotations { get; set; } = new List<RotationModel>();
+        public IList<IRotationModel> Rotations { get; set; } = new List<IRotationModel>();
 
         public FieldModel()
         {
