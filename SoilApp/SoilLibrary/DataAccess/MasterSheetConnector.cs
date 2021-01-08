@@ -9,32 +9,25 @@ using System.Text.RegularExpressions;
 
 namespace SoilLibrary.DataAccess
 {
-    public class MasterSheetConnector
+    public static class MasterSheet
     {
         private static readonly string SpreadsheetId = "1AUMOHvJnfGT5Ve1Ep-ECslC9bhj8sP0DAI64CmQ-iWw";
 
-        private readonly GoogleSheetsConnector SheetsConnection = new GoogleSheetsConnector(SpreadsheetId);
-        
+        private static readonly GoogleSheet GoogleSheet = new GoogleSheet(SpreadsheetId);
+
         private static readonly string SheetRange = "'Master Sheet'";
 
-        public List<FieldModel> Fields = new List<FieldModel>();
+        public static List<FieldModel> Fields = new List<FieldModel>();
         private static readonly int ProductTypeId = GlobalConfig.Connection.
             GetDimensionedQuantityTypeId_ByName("Product");
         private static readonly List<DimensionedQuantityModel> Crops = GlobalConfig.Connection.
             GetDimensionedQuantity_ByType(ProductTypeId);
 
-        public IList<IList<object>> GetSheetValues()
-        {
-            return SheetsConnection.GetSheetValues(SheetRange);
-        }
-        
-        public void UpsertFieldsAndRotations()
+        public static void UpsertFieldsAndRotations()
         {
             //TODO - Clean up this code
 
-            MasterSheetConnector ms = new MasterSheetConnector();
-
-            var rows = ms.GetSheetValues();
+            var rows = GoogleSheet.GetValues(SheetRange);
 
             // Pop header row off front of list of rows
             var headers = rows[0];
@@ -85,7 +78,7 @@ namespace SoilLibrary.DataAccess
                         {
                             Year = int.Parse(rotationColumn),
                             FieldId = newField.Id >= 1 ? newField.Id : 0
-                            
+
                         };
 
                         //Finds this rotation column's index in master sheet in order to retrieve
@@ -105,8 +98,8 @@ namespace SoilLibrary.DataAccess
                     }
                     GlobalConfig.Connection.CreateRotation_Batch(newField.Rotations);
                 }
-                ms.Fields.Add(newField);
-                List<object> updateRow = new List<object>() { newField.Farm, newField.Field, newField.Id};
+                MasterSheet.Fields.Add(newField);
+                List<object> updateRow = new List<object>() { newField.Farm, newField.Field, newField.Id };
                 updateRow.Add(newField.Farm);
                 updateRow.Add(newField.Field);
                 updateRow.Add(newField.Id.ToString());
@@ -115,9 +108,9 @@ namespace SoilLibrary.DataAccess
             UpdateFieldIds(idUpdateList);
         }
 
-        public void UpdateFieldIds(List<IList<object>> values)
+        public static void UpdateFieldIds(List<IList<object>> values)
         {
-            SheetsConnection.WriteValuesToRange(values, "DatabaseIds!A1");
+            GoogleSheet.WriteValues(values, "DatabaseIds!A1");
         }
     }
 }

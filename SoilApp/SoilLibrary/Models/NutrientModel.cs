@@ -6,7 +6,6 @@ namespace SoilLibrary.Models
 {
     public class NutrientModel : DimensionedQuantityModel
     {
-
         /// <summary>
         /// Amount of nutrient on a field or in a product
         /// </summary>

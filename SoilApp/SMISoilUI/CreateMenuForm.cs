@@ -28,8 +28,7 @@ namespace SMISoilUI
         {
             try
             {
-                MasterSheetConnector ms = new MasterSheetConnector();
-                ms.UpsertFieldsAndRotations();
+                MasterSheet.UpsertFieldsAndRotations();
                 MessageBox.Show("Master Sheet sync successful!");
             }catch (Exception exception)
             {
