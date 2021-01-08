@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMISoilUI", "SMISoilUI\SMISoilUI.csproj", "{DD66D517-489C-48B9-81B1-07C58053F91C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoilLibrary", "..\..\..\SoilLibrary\SoilLibrary.csproj", "{F1D304E6-C140-4C76-841D-6FA9710D9AA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD66D517-489C-48B9-81B1-07C58053F91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD66D517-489C-48B9-81B1-07C58053F91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD66D517-489C-48B9-81B1-07C58053F91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD66D517-489C-48B9-81B1-07C58053F91C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D304E6-C140-4C76-841D-6FA9710D9AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D304E6-C140-4C76-841D-6FA9710D9AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D304E6-C140-4C76-841D-6FA9710D9AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D304E6-C140-4C76-841D-6FA9710D9AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4EDED27-A596-4DDD-B3F4-7F096E093638}
+	EndGlobalSection
+EndGlobal
