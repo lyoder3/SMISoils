@@ -1,23 +1,18 @@
 ﻿using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
+using SoilLibrary.Exceptions;
 using System;
 using System.Collections.Generic;
 
 namespace SoilLibrary.Utilities
 {
-    public class GoogleSheetConnector
+    public class GoogleSheetConnector : IGoogleSheetConnector
     {
-        public string SpreadsheetId { get; private set; }
 
-        public GoogleSheetConnector(string spreadsheetId)
-        {
-            SpreadsheetId = spreadsheetId;
-        }
-
-        public IList<IList<Object>> GetValues(string sheetRange)
+        public IList<IList<Object>> GetValues(string spreadsheetId, string sheetRange)
         {
             SpreadsheetsResource.ValuesResource.GetRequest request =
-            GlobalConfig.SheetsService.Spreadsheets.Values.Get(SpreadsheetId, sheetRange);
+            GlobalConfig.SheetsService.Spreadsheets.Values.Get(spreadsheetId, sheetRange);
 
             ValueRange response = request.Execute();
 
@@ -33,7 +28,7 @@ namespace SoilLibrary.Utilities
             }
         }
 
-        public void WriteValues(IList<IList<Object>> values, string sheetRange)
+        public void WriteValues(IList<IList<Object>> values, string spreadsheetId, string sheetRange)
         {
             ValueRange updateRange = new ValueRange
             {
@@ -42,13 +37,16 @@ namespace SoilLibrary.Utilities
             };
 
             SpreadsheetsResource.ValuesResource.UpdateRequest request = GlobalConfig.SheetsService.Spreadsheets
-                .Values.Update(updateRange, SpreadsheetId, updateRange.Range);
+                .Values.Update(updateRange, spreadsheetId, updateRange.Range);
             request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
-            UpdateValuesResponse response = request.Execute();
 
-            if (response.UpdatedCells == values[0].Count)
+            try
             {
-                return;
+                UpdateValuesResponse response = request.Execute();
+            }
+            catch (Exception ex)
+            {
+                throw new GoogleSheetUpdateException("Failed to write values to Google Sheet");
             }
         }
     }

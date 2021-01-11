@@ -1,6 +1,6 @@
 ﻿namespace SoilLibrary.Models
 {
-    public class RotationModel : IRotationModel
+    public class RotationModel
     {
         /// <summary>
         /// Unique id for this object from database
@@ -18,6 +18,6 @@
         /// <summary>
         /// Year for this rotation
         /// </summary>
-        public int Year { get; set; }
+        public int RotationYear { get; set; }
     }
 }

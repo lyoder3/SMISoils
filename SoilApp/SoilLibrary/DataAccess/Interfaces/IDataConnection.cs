@@ -5,13 +5,16 @@ namespace SoilLibrary.DataAccess
 {
     public interface IDataConnection
     {
-        void CreateField(IFieldModel model);
-        void CreateRotation_Batch(IList<IRotationModel> models);
-        void CreateDimensionedQuantity(IDimensionedQuantityModel model);
-        void CreateAnalysis(IAnalysisModel model);
+        void CreateField(FieldModel model);
+        void CreateRotation_Batch(IList<RotationModel> models);
+        void CreateField_andRotations(IList<FieldModel> models);
+        void CreateDimensionedQuantity(DimensionedQuantityModel model);
+        void CreateAnalysis(AnalysisModel model);
         void CreateOperation(OperationModel model);
         void CreateSoilSample(SoilSampleModel model);
-        void CreateUnit(IUnitModel model);
+        void CreateSampleNutrients_Batch(IList<NutrientModel> models);
+        void UpsertFieldsNutrients(IList<NutrientModel> models);
+        void CreateUnit(UnitModel model);
 
         IList<DimensionedQuantityTypeModel> GetDimensionedQuantityType_All();
         int GetDimensionedQuantityTypeId_ByName(string name);

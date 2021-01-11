@@ -1,5 +1,4 @@
 ﻿using SoilLibrary;
-using SoilLibrary.Factories;
 using SoilLibrary.Models;
 using System;
 using System.Windows.Forms;
@@ -15,7 +14,7 @@ namespace SMISoilUI
 
         private void createUnitButton_Click(object sender, EventArgs e)
         {
-            IUnitModel model = ModelFactory.CreateUnitModel();
+            UnitModel model = new UnitModel();
             model.Unit = unitValue.Text;
 
             GlobalConfig.Connection.CreateUnit(model);

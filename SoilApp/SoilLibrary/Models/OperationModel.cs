@@ -2,7 +2,7 @@
 
 namespace SoilLibrary.Models
 {
-    public class OperationModel : ITimeboundObject
+    public class OperationModel
     {
         /// <summary>
         /// Unique id from database

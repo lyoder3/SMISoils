@@ -1,32 +1,53 @@
 ﻿using SoilLibrary.Models;
 using SoilLibrary.Utilities;
 using System.Collections.Generic;
+using System;
+
 
 namespace SoilLibrary.DataAccess
 {
-    public static class MasterSheet
+    public class MasterSheet : IMasterSheet
     {
+        // TODO - Use AutoFac to inject these dependencies
+        private IGoogleSheetConnector _googleSheet;
+
+        public IGoogleSheetConnector GoogleSheet
+        {
+            get { return _googleSheet; }
+            set { _googleSheet = value; }
+        }
+
+        private IMasterSheetProcessor _processor;
+
+        public IMasterSheetProcessor Processor
+        {
+            get { return _processor; }
+            set { _processor = value; }
+        }
+
         private static readonly string SpreadsheetId = "1AUMOHvJnfGT5Ve1Ep-ECslC9bhj8sP0DAI64CmQ-iWw";
 
-        private static readonly IGoogleSheet GoogleSheet = Factory.CreateGoogleSheet(SpreadsheetId);
 
         private static readonly string SheetRange = "'Master Sheet'";
 
-        public static List<FieldModel> Fields = new List<FieldModel>();
-
-        public static void UpsertFieldsAndRotations()
+        public MasterSheet(IGoogleSheetConnector googleSheet, IMasterSheetProcessor processor)
         {
+            GoogleSheet = googleSheet;
+            Processor = processor;
+        }
 
-            var rows = GoogleSheet.GetValues(SheetRange);
+        public void UpsertFieldsAndRotations()
+        {
+            var rows = GoogleSheet.GetValues(SpreadsheetId, SheetRange);
 
-            IList<IList<object>> idUpdateRows = MasterSheetProcessor.Process(rows);
+            IList<IList<object>> idUpdateRows = Processor.Process(rows);
 
             UpdateFieldIds(idUpdateRows);
         }
 
-        public static void UpdateFieldIds(IList<IList<object>> values)
+        public void UpdateFieldIds(IList<IList<object>> values)
         {
-            GoogleSheet.WriteValues(values, "DatabaseIds!A1");
+            GoogleSheet.WriteValues(values, SpreadsheetId, "DatabaseIds!A1");
         }
     }
 }

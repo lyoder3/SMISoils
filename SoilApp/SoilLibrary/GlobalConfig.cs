@@ -7,6 +7,8 @@ using System;
 using System.Configuration;
 using System.IO;
 using System.Threading;
+using Autofac;
+using SoilLibrary.Utilities;
 
 namespace SoilLibrary
 {
@@ -15,10 +17,11 @@ namespace SoilLibrary
         public static IDataConnection Connection { get; private set; }
         private static UserCredential GoogleCreds { get; set; }
         public static SheetsService SheetsService { get; private set; }
+        public static IMasterSheet MasterSheet { get; private set; }
 
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
 
-        public static void InitializeConnection()
+        public static void Initialize()
         {
             SQLConnector sql = new SQLConnector();
             Connection = sql;
@@ -29,6 +32,8 @@ namespace SoilLibrary
                 ApplicationName = "SMI Soils"
             });
 
+            var container = ContainerConfig.Configure();
+            
         }
         public static string CnnString(string name)
         {
@@ -39,7 +44,7 @@ namespace SoilLibrary
             using (var stream =
                 new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = "token.json";
+                string credPath = "token1.json";
                 UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="eaf95ab3-f632-4bb0-b1ad-01216b6e6de0" ChangeDateTime="01/11/2021 15:26:15">
+    <Property Name="ElementName" Value="[dbo].[SoilSamples].[Timestamp]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SoilSamples]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Year" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="edc504c7-f3e1-4def-8290-5acb1fda8969" ChangeDateTime="01/11/2021 15:50:00">
+    <Property Name="ElementName" Value="[dbo].[SoilSamples].[Timestamp]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SoilSamples]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Year" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4bf379db-c546-4aaf-bcd7-b10fb93c6010" ChangeDateTime="01/11/2021 19:01:40">
+    <Property Name="ElementName" Value="[dbo].[SoilSamples].[Year]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SoilSamples]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SampleYear" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c9953855-ab17-4d10-b71e-deab2e77f1cd" ChangeDateTime="01/11/2021 19:02:29">
+    <Property Name="ElementName" Value="[dbo].[Rotations].[Year]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Rotations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RotationYear" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9aab5e69-22ef-4b02-b94c-0641b3a04bc7" ChangeDateTime="01/11/2021 19:20:21">
+    <Property Name="ElementName" Value="[dbo].[SoilSamplesNutrients].[Level]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SoilSamplesNutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Amount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3e0da337-b0b4-4994-acb7-6d0c73415006" ChangeDateTime="01/11/2021 19:44:35">
+    <Property Name="ElementName" Value="[dbo].[FieldsNutrients].[Level]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[FieldsNutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Amount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="df41091c-ebc6-405b-8b13-338bd812680e" ChangeDateTime="01/11/2021 19:44:44">
+    <Property Name="ElementName" Value="[dbo].[SoilSamplesNutrients].[Recommendation]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SoilSamplesNutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Goal" />
+  </Operation>
+</Operations>

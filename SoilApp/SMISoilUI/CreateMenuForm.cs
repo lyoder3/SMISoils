@@ -1,6 +1,8 @@
 ﻿using SoilLibrary.DataAccess;
 using System;
 using System.Windows.Forms;
+using SoilLibrary.Exceptions;
+using SoilLibrary;
 
 namespace SMISoilUI
 {
@@ -19,7 +21,14 @@ namespace SMISoilUI
 
         private void masterSheetSyncButton_Click(object sender, EventArgs e)
         {
-            MasterSheet.UpsertFieldsAndRotations();
+            try
+            {
+                GlobalConfig.MasterSheet.UpsertFieldsAndRotations();
+            } catch (GoogleSheetUpdateException ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
             MessageBox.Show("Master Sheet sync successful!");
         }
 

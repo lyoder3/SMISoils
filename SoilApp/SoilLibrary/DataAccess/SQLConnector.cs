@@ -11,12 +11,12 @@ namespace SoilLibrary.DataAccess
     {
         private const string db = "Soil";
 
-        public void CreateAnalysis(IAnalysisModel model)
+        public void CreateAnalysis(AnalysisModel model)
         {
             throw new System.NotImplementedException();
         }
 
-        public void CreateDimensionedQuantity(IDimensionedQuantityModel model)
+        public void CreateDimensionedQuantity(DimensionedQuantityModel model)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -33,7 +33,7 @@ namespace SoilLibrary.DataAccess
             }
         }
 
-        public void CreateField(IFieldModel model)
+        public void CreateField(FieldModel model)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -48,12 +48,19 @@ namespace SoilLibrary.DataAccess
             }
         }
 
+        public void CreateField_andRotations(IList<FieldModel> models)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+            }
+        }
+
         public void CreateOperation(OperationModel model)
         {
             throw new System.NotImplementedException();
         }
 
-        public void CreateRotation_Batch(IList<IRotationModel> models)
+        public void CreateRotation_Batch(IList<RotationModel> models)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -61,12 +68,30 @@ namespace SoilLibrary.DataAccess
             }
         }
 
-        public void CreateSoilSample(SoilSampleModel model)
+        public void CreateSampleNutrients_Batch(IList<NutrientModel> models)
         {
-            throw new System.NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                connection.Execute("dbo.spSoilSamplesNutrients_Insert", models, commandType: CommandType.StoredProcedure);
+            }
         }
 
-        public void CreateUnit(IUnitModel model)
+        public void CreateSoilSample(SoilSampleModel model)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FieldId", model.FieldId);
+                p.Add("@SampleYear", model.SampleYear);
+                p.Add("@id", model.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+
+                connection.Execute("dbo.spSoilSamples_Insert", p, commandType: CommandType.StoredProcedure);
+
+                model.Id = p.Get<int>("@id");
+            }
+        }
+
+        public void CreateUnit(UnitModel model)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {

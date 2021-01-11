@@ -2,7 +2,7 @@
 
 namespace SoilLibrary.Models
 {
-    public class FieldModel : IFieldModel
+    public class FieldModel
     {
         /// <summary>
         /// Unique id for field record in database
@@ -19,11 +19,11 @@ namespace SoilLibrary.Models
         /// <summary>
         /// List of nutrient objects and their respective data for the field
         /// </summary>
-        public IList<INutrientModel> Nutrients { get; set; }
+        public List<NutrientModel> Nutrients { get; set; }
         /// <summary>
         /// List of rotation entries (historic and future)
         /// </summary>
-        public IList<IRotationModel> Rotations { get; set; } = new List<IRotationModel>();
+        public List<RotationModel> Rotations { get; set; } = new List<RotationModel>();
 
         public FieldModel()
         {

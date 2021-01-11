@@ -6,7 +6,8 @@ namespace SMISoilUI
 {
     static class Program
     {
-        // TODO - Comment everything with XML comments 
+        // TODO - Comment everything with XML comments
+        // TODO - WANT: Make new UI with WPF using Caliburn.Micro to do MVVM
 
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +17,7 @@ namespace SMISoilUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            GlobalConfig.InitializeConnection();
+            GlobalConfig.Initialize();
             Application.Run(new HomeForm());
         }
     }

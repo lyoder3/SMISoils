@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SoilLibrary.Models
 {
-    public class SoilSampleModel : ITimeboundObject
+    public class SoilSampleModel
     {
         /// <summary>
         /// Unique id for this object from database
@@ -14,12 +14,13 @@ namespace SoilLibrary.Models
         /// </summary>
         public int FieldId { get; set; }
         /// <summary>
-        /// Timestamp for when soil sample was taken
+        /// Year soil sample is for. SQL Database automatically enters
+        /// current year if this isn't passed
         /// </summary>
-        public DateTime Timestamp { get; set; }
+        public int SampleYear { get; set; }
         /// <summary>
         /// List of nutrient objects and their respective data for the sample
         /// </summary>
-        public List<NutrientModel> Nutrients { get; set; }
+        public List<NutrientModel> Nutrients { get; set; } = new List<NutrientModel>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SoilLibrary.Models
 {
-    public class DimensionedQuantityTypeModel : IDimensionedQuantityTypeModel
+    public class DimensionedQuantityTypeModel 
     {
         /// <summary>
         /// Type id

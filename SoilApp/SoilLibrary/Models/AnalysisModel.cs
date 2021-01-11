@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SoilLibrary.Models
 {
-    public class AnalysisModel : ITimeboundObject, IAnalysisModel
+    public class AnalysisModel
     {
         /// <summary>
         /// Unique id from database

@@ -1,5 +1,6 @@
 ﻿using SoilLibrary.Utilities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace SMISoilUI
 {
     public partial class CreateSoilSampleForm : Form
     {
-        private BindingList<string> selectedFilePaths = new BindingList<string>();
+        private List<string> selectedFilePaths = new List<string>();
         public CreateSoilSampleForm()
         {
             InitializeComponent();
@@ -50,22 +51,20 @@ namespace SMISoilUI
                     bool isCSV = extension == ".csv";
                     if (isCSV)
                     {
-                        selectedFilePaths.Add(fileName);
+                        selectedFilePaths.Add(file);
                     }
                 }
             }
+            WireUpLists();
         }
 
         private void importButton_Click(object sender, EventArgs e)
         {
             if (selectedFilePaths.Count > 0)
             {
-                SoilSampleProcessor sampleProcesor = new SoilSampleProcessor();
-                foreach (var filePath in selectedFilePaths)
-                {
-                    sampleProcesor.FilePaths.Add(filePath);
-                }
-                sampleProcesor.Process();
+                SoilSampleProcessor sampleProcesor = new SoilSampleProcessor(selectedFilePaths);
+                sampleProcesor.ProcessSamples();
+                Console.WriteLine();
             }
         }
     }

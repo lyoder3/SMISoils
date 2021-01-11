@@ -1,6 +1,6 @@
 ﻿namespace SoilLibrary.Models
 {
-    public class DimensionedQuantityModel : IDimensionedQuantityModel
+    public class DimensionedQuantityModel
     {
         public int Id { get; set; } = -1;
         public int TypeId { get; set; }
