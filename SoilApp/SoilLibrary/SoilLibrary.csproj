@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.6.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\SMISoils\SMISoilLibrary\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -121,19 +118,19 @@
     <Compile Include="DataAccess\Interfaces\IGoogleSheetConnector.cs" />
     <Compile Include="DataAccess\MasterSheet.cs" />
     <Compile Include="GlobalConfig.cs" />
-    <Compile Include="Models\DimensionedQuantityModel.cs" />
-    <Compile Include="Models\DimensionedQuantityTypeModel.cs" />
+    <Compile Include="Models\NutrientModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\UnitModel.cs" />
     <Compile Include="Models\AnalysisModel.cs" />
     <Compile Include="Models\FieldModel.cs" />
-    <Compile Include="Models\NutrientModel.cs" />
+    <Compile Include="Models\SoilSampleNutrientModel.cs" />
     <Compile Include="Models\OperationModel.cs" />
     <Compile Include="Models\RotationModel.cs" />
     <Compile Include="Models\SoilSampleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ContainerConfig.cs" />
     <Compile Include="Utilities\ICSVProcessor.cs" />
     <Compile Include="Utilities\IMasterSheetProcessor.cs" />
+    <Compile Include="Utilities\MasterSheetColumnProcessor.cs" />
     <Compile Include="Utilities\MasterSheetProcessor.cs" />
     <Compile Include="Utilities\SoilSamples\ISoilSampleProcessor.cs" />
     <Compile Include="Utilities\SoilSamples\SoilSampleColumnProcessor.cs" />

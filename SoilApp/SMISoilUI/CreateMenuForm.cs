@@ -13,12 +13,12 @@ namespace SMISoilUI
             InitializeComponent();
         }
 
-        private void createMeasuredQuantityFormButton_Click(object sender, EventArgs e)
+        private void createProductFormButton_Click(object sender, EventArgs e)
         {
-            Form measuredQuantityForm = new CreateDimensionedQuantityForm();
-            measuredQuantityForm.ShowDialog();
+            Form createProductForm = new CreateProductForm();
+            createProductForm.ShowDialog();
         }
-
+        
         private void masterSheetSyncButton_Click(object sender, EventArgs e)
         {
             try
@@ -37,6 +37,12 @@ namespace SMISoilUI
             Form createSampleForm = new CreateSoilSampleForm();
             createSampleForm.ShowDialog();
 
+        }
+
+        private void createNutrientFormButton_Click(object sender, EventArgs e)
+        {
+            Form createNutrientForm = new CreateNutrientForm();
+            createNutrientForm.ShowDialog();
         }
     }
 }

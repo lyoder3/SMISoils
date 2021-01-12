@@ -21,6 +21,6 @@ namespace SoilLibrary.Models
         /// <summary>
         /// List of nutrient objects and their respective data for the sample
         /// </summary>
-        public List<NutrientModel> Nutrients { get; set; } = new List<NutrientModel>();
+        public List<SoilSampleNutrientModel> Nutrients { get; set; } = new List<SoilSampleNutrientModel>();
     }
 }

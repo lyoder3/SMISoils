@@ -4,6 +4,6 @@
     [Timestamp] DATETIME     NOT NULL,
     [Name]      VARCHAR (50) NOT NULL,
     CONSTRAINT [PK_Analyses] PRIMARY KEY CLUSTERED ([id] ASC),
-    CONSTRAINT [FK_Analyses_DimensionedQuantities] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[DimensionedQuantities] ([id]) ON UPDATE CASCADE
+    CONSTRAINT [FK_Analyses_Products] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Products] ([id])
 );
 

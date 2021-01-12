@@ -49,4 +49,46 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Goal" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="858ccf3b-fe1e-4a92-a920-2c5d01930070" ChangeDateTime="01/12/2021 14:29:30">
+    <Property Name="ElementName" Value="[dbo].[Nutrients].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Nutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8ab7ff72-4051-4066-949d-2be1e615a058" ChangeDateTime="01/12/2021 14:29:44">
+    <Property Name="ElementName" Value="[dbo].[Nutrients].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Nutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FullName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="47bff5b8-ea65-44ff-8140-832f73785db1" ChangeDateTime="01/12/2021 14:31:11">
+    <Property Name="ElementName" Value="[dbo].[Nutrients].[FullName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Nutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="99123898-29d0-4a93-9c9b-63311e207635" ChangeDateTime="01/12/2021 14:50:28">
+    <Property Name="ElementName" Value="[dbo].[Products].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Products]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ItemName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5e2529ff-3575-41ff-a434-efebe40fcf90" ChangeDateTime="01/12/2021 14:50:38">
+    <Property Name="ElementName" Value="[dbo].[Nutrients].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Nutrients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ItemName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4567238c-238a-4c84-8746-a0727f679fbe" ChangeDateTime="01/12/2021 19:02:32">
+    <Property Name="ElementName" Value="[dbo].[Rotations].[Year]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Rotations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RotationYear" />
+  </Operation>
 </Operations>

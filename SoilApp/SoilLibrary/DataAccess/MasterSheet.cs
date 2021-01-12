@@ -19,30 +19,25 @@ namespace SoilLibrary.DataAccess
 
         private IMasterSheetProcessor _processor;
 
-        public IMasterSheetProcessor Processor
-        {
-            get { return _processor; }
-            set { _processor = value; }
-        }
-
         private static readonly string SpreadsheetId = "1AUMOHvJnfGT5Ve1Ep-ECslC9bhj8sP0DAI64CmQ-iWw";
 
 
         private static readonly string SheetRange = "'Master Sheet'";
 
-        public MasterSheet(IGoogleSheetConnector googleSheet, IMasterSheetProcessor processor)
+        public MasterSheet()
         {
-            GoogleSheet = googleSheet;
-            Processor = processor;
+            GoogleSheet = new GoogleSheetConnector();
         }
 
         public void UpsertFieldsAndRotations()
         {
             var rows = GoogleSheet.GetValues(SpreadsheetId, SheetRange);
 
-            IList<IList<object>> idUpdateRows = Processor.Process(rows);
+            MasterSheetProcessor processor = new MasterSheetProcessor(rows);
 
-            UpdateFieldIds(idUpdateRows);
+            processor.ProcessRows();
+
+            UpdateFieldIds(processor.IdUpdateList);
         }
 
         public void UpdateFieldIds(IList<IList<object>> values)

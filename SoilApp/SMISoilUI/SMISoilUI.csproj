@@ -74,11 +74,17 @@
     <Compile Include="CreateMenuForm.Designer.cs">
       <DependentUpon>CreateMenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateDimensionedQuantityForm.cs">
+    <Compile Include="CreateNutrientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateDimensionedQuantityForm.Designer.cs">
-      <DependentUpon>CreateDimensionedQuantityForm.cs</DependentUpon>
+    <Compile Include="CreateNutrientForm.Designer.cs">
+      <DependentUpon>CreateNutrientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateProductForm.Designer.cs">
+      <DependentUpon>CreateProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateSoilSampleForm.cs">
       <SubType>Form</SubType>
@@ -103,8 +109,11 @@
     <EmbeddedResource Include="CreateMenuForm.resx">
       <DependentUpon>CreateMenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateDimensionedQuantityForm.resx">
-      <DependentUpon>CreateDimensionedQuantityForm.cs</DependentUpon>
+    <EmbeddedResource Include="CreateNutrientForm.resx">
+      <DependentUpon>CreateNutrientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateProductForm.resx">
+      <DependentUpon>CreateProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateSoilSampleForm.resx">
       <DependentUpon>CreateSoilSampleForm.cs</DependentUpon>

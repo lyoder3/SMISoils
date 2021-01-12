@@ -64,7 +64,7 @@ namespace SMISoilUI
             {
                 SoilSampleProcessor sampleProcesor = new SoilSampleProcessor(selectedFilePaths);
                 sampleProcesor.ProcessSamples();
-                Console.WriteLine();
+                MessageBox.Show("Soil sample import successfull!");
             }
         }
     }

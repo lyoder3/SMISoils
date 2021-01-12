@@ -8,104 +8,87 @@ namespace SoilLibrary.Utilities
 {
     public class MasterSheetProcessor : IMasterSheetProcessor
     {
-        // TODO - Rewrite all of these methods
-        private List<object> Headers { get; set; }
-        private List<List<object>> Rows { get; set; }
-        private List<FieldModel> Fields { get; set; } = new List<FieldModel>() { };
-        private IDictionary<string, int> RelevantColumns { get; set; }
-
+        private MasterSheetColumnProcessor columnProcessor { get; set; }
+        private IList<IList<object>> RawRows { get; set; }
+        private IList<FieldModel> Fields { get; set; } = new List<FieldModel>() { };
+        private IList<ProductModel> Crops { get; set; }
+        public IList<IList<object>> IdUpdateList { get; private set; } = new List<IList<object>>();
+        public int FieldNameIndex { get; set; }
+        public int FarmNameIndex { get; set; }
+        public int IdIndex { get; set; }
         private IDictionary<int, int> RotationColumns { get; set; }
 
-        private readonly int ProductTypeId = GlobalConfig.Connection.
-    GetDimensionedQuantityTypeId_ByName("Product");
-
-        private readonly List<DimensionedQuantityModel> Crops;
-
-        private readonly Regex FarmNameRegex = new Regex("^Farm");
-        private readonly Regex FieldNameRegex = new Regex("^Field");
-        private readonly Regex RotationRegex = new Regex("\\d{4} SPRING");
-        private readonly Regex IdRegex = new Regex("^id");
-        private readonly Regex YearRegex = new Regex("(\\d{4})");
-
-        private List<List<object>> IdUpdateList = new List<List<object>>();
-
-        public MasterSheetProcessor(List<List<object>> rows)
+        public MasterSheetProcessor(IList<IList<object>> rows)
         {
-            Rows = rows;
+            RawRows = rows;
+            Crops = GlobalConfig.Connection.GetProducts_All();
         }
-        public IList<IList<object>> Process(IList<IList<object>> rows)
+        public void PopHeaders()
         {
-            throw new NotImplementedException();
+            var headers = RawRows[0];
+            RawRows.RemoveAt(0);
+
+            columnProcessor = new MasterSheetColumnProcessor(headers);
+        }
+        public void ProcessRows()
+        {
+            PopHeaders();
+            columnProcessor.MapColumns();
+
+            FieldNameIndex = columnProcessor.FieldNameIndex;
+            FarmNameIndex = columnProcessor.FarmNameIndex;
+            IdIndex = columnProcessor.IdIndex;
+            RotationColumns = columnProcessor.RotationColumns;
+
+            foreach (var row in RawRows)
+            {
+                ProcessRow(row);
+            }
         }
 
         public void ProcessRow(IList<object> row)
         {
-            throw new NotImplementedException();
+            FieldModel newField = new FieldModel()
+            {
+                Field = (string)row[FieldNameIndex],
+                Farm = (string)row[FarmNameIndex],
+            };
+            GlobalConfig.Connection.CreateField(newField);
+
+            foreach (var rotationColumn in RotationColumns)
+            {
+                int columnIndex = rotationColumn.Value;
+                RotationModel newRotation = new RotationModel()
+                {
+                    FieldId = newField.Id,
+                    RotationYear = rotationColumn.Key
+                };
+                string plannedCrop = (string)row[columnIndex];
+
+                if (plannedCrop.Length > 0)
+                {
+                    // convert names to lowercase so just the text is being compared
+                    IList<ProductModel> matchedCrop = Crops.Where(crop => crop.ItemName.ToLower() == plannedCrop.ToLower())
+                                                     .ToList();
+
+                    if (matchedCrop.Count != 1)
+                    {
+                        throw new Exception($"Crop matching error. Matched crop count is: {matchedCrop.Count}");
+                    }
+                    else
+                    {
+                        newRotation.ProductId = matchedCrop[0].Id;
+                        newField.Rotations.Add(newRotation);
+                    }
+                }
+            }
+            GlobalConfig.Connection.CreateRotation_Batch(newField.Rotations);
+            Fields.Add(newField);
+            IList<object> updateRow = new string[] { newField.Farm, newField.Field, newField.Id.ToString() };
+
+            IdUpdateList.Add(updateRow);
+
         }
 
-        public void BuildFarmName(FieldModel newField, string key, IList<object> row)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BuildFieldName(FieldModel newField, string key, IList<object> row)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BuildId(FieldModel newField, string key, IList<object> row)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int ExtractYear(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool FieldModelColumnsExist()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDictionary<string, int> GetRelevantColumns(IList<object> headers)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDictionary<int, int> GetRotationColumns()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsFarmName(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsFieldName(object header)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsId(object header)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsRelevantColumn(object header)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsRotation(object header)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool ValidField(IList<object> row)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

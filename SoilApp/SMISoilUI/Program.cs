@@ -18,7 +18,7 @@ namespace SMISoilUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             GlobalConfig.Initialize();
-            Application.Run(new HomeForm());
+            Application.Run(new CreateMenuForm());
         }
     }
 }

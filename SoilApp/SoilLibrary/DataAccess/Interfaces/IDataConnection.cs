@@ -8,21 +8,18 @@ namespace SoilLibrary.DataAccess
         void CreateField(FieldModel model);
         void CreateRotation_Batch(IList<RotationModel> models);
         void CreateField_andRotations(IList<FieldModel> models);
-        void CreateDimensionedQuantity(DimensionedQuantityModel model);
+        void CreateNutrient(NutrientModel model);
+        void CreateProduct(ProductModel model);
         void CreateAnalysis(AnalysisModel model);
         void CreateOperation(OperationModel model);
         void CreateSoilSample(SoilSampleModel model);
-        void CreateSampleNutrients_Batch(IList<NutrientModel> models);
-        void UpsertFieldsNutrients(IList<NutrientModel> models);
+        void CreateSampleNutrients_Batch(IList<SoilSampleNutrientModel> models);
         void CreateUnit(UnitModel model);
+        IList<UnitModel> GetUnits_All();
 
-        IList<DimensionedQuantityTypeModel> GetDimensionedQuantityType_All();
-        int GetDimensionedQuantityTypeId_ByName(string name);
+        IList<ProductModel> GetProducts_All();
 
-        IList<UnitModel> GetUnit_All();
-
-        IList<DimensionedQuantityModel> GetDimensionedQuantity_ByType(int typeId);
-
+        IList<NutrientModel> GetNutrients_All();
 
     }
 }

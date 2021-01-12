@@ -24,7 +24,7 @@ namespace SoilLibrary.Models
         /// <summary>
         /// List of nutrient levels in this analysis
         /// </summary>
-        public List<NutrientModel> Nutrients { get; set; }
+        public List<SoilSampleNutrientModel> Nutrients { get; set; }
 
         public AnalysisModel()
         {

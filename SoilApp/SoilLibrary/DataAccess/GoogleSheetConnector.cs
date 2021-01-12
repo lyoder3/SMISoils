@@ -28,7 +28,7 @@ namespace SoilLibrary.Utilities
             }
         }
 
-        public void WriteValues(IList<IList<Object>> values, string spreadsheetId, string sheetRange)
+        public void WriteValues(IList<IList<object>> values, string spreadsheetId, string sheetRange)
         {
             ValueRange updateRange = new ValueRange
             {

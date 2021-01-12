@@ -3,15 +3,19 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[spDimensionedTypes_GetAll] 
+CREATE PROCEDURE [dbo].[spNutrients_Insert] 
 	-- Add the parameters for the stored procedure here
-
+	@QuantityName nvarchar(50),
+	@UnitId int,
+	@id int=0 output
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-	SELECT * from dbo.DimensionedTypes;
+    INSERT INTO dbo.Nutrients (ItemName, UnitId)
+	VALUES (@QuantityName, @UnitId);
+
+	SELECT @id = SCOPE_IDENTITY();
 END

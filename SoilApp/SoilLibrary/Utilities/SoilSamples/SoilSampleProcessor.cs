@@ -86,8 +86,8 @@ namespace SoilLibrary.Utilities
 
             foreach (var key in NutrientMappings.Keys)
             {
-                NutrientModel newNutrient = new NutrientModel();
-                newNutrient.SoilSampleId = newSample.Id;
+                SoilSampleNutrientModel newNutrientRecord = new SoilSampleNutrientModel();
+                newNutrientRecord.SoilSampleId = newSample.Id;
                 decimal currentLevel = Convert.ToDecimal(sample[NutrientMappings[key]]);
 
                 Regex recommendationRegex = new Regex($"{key} Rec \\d");
@@ -98,20 +98,20 @@ namespace SoilLibrary.Utilities
                 if (recommendationColumns.Count() > 0)
                 {
                     decimal totalRec = recommendationColumns.Sum(index => Convert.ToDecimal(sample[index]));
-                    newNutrient.NutrientId = Convert.ToInt32(key);
+                    newNutrientRecord.NutrientId = Convert.ToInt32(key);
                     
-                    newNutrient.Goal = Convert.ToInt32(
+                    newNutrientRecord.Goal = Convert.ToInt32(
                         Math.Round(
-                            totalRec + currentLevel * NutrientModel.PPMConversionFactor, 0));
-                    newNutrient.Amount = currentLevel;
+                            totalRec + currentLevel * SoilSampleNutrientModel.PPMConversionFactor, 0));
+                    newNutrientRecord.Amount = currentLevel;
                 }
                 else
                 {
-                    newNutrient.NutrientId = Convert.ToInt32(key);
-                    newNutrient.Goal = 0;
-                    newNutrient.Amount = currentLevel;
+                    newNutrientRecord.NutrientId = Convert.ToInt32(key);
+                    newNutrientRecord.Goal = 0;
+                    newNutrientRecord.Amount = currentLevel;
                 }
-                newSample.Nutrients.Add(newNutrient);
+                newSample.Nutrients.Add(newNutrientRecord);
             }
             GlobalConfig.Connection.CreateSampleNutrients_Batch(newSample.Nutrients);
             Samples.Add(newSample);

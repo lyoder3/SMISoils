@@ -19,7 +19,7 @@ namespace SoilLibrary.Models
         /// <summary>
         /// List of nutrient objects and their respective data for the field
         /// </summary>
-        public List<NutrientModel> Nutrients { get; set; }
+        public List<SoilSampleNutrientModel> Nutrients { get; set; }
         /// <summary>
         /// List of rotation entries (historic and future)
         /// </summary>

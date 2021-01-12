@@ -7,8 +7,6 @@ using System;
 using System.Configuration;
 using System.IO;
 using System.Threading;
-using Autofac;
-using SoilLibrary.Utilities;
 
 namespace SoilLibrary
 {
@@ -32,7 +30,7 @@ namespace SoilLibrary
                 ApplicationName = "SMI Soils"
             });
 
-            var container = ContainerConfig.Configure();
+            MasterSheet = new MasterSheet();
             
         }
         public static string CnnString(string name)

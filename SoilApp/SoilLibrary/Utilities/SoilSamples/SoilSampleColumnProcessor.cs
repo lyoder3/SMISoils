@@ -5,9 +5,9 @@ namespace SoilLibrary.Utilities
 {
     public class SoilSampleColumnProcessor
     {
-        private static readonly Regex NutrientRegex = new Regex("(?<NutrientId>\\d{2})$");
+        private static readonly Regex NutrientRegex = new Regex("^(?<NutrientId>\\d{1,2})$");
         private static readonly Regex FieldIdRegex = new Regex("^Field");
-        private static readonly Regex NutrientRecRegex = new Regex("(?<NutrientId>\\d{2}) Rec (?<RecNum>\\d)");
+        private static readonly Regex NutrientRecRegex = new Regex("(?<NutrientId>\\d||\\d{2}) Rec (?<RecNum>\\d)");
         private static readonly Regex YearRegex = new Regex("^Year");
         private List<string> Headers { get; set; }
         public int FieldIndex { get; set; }

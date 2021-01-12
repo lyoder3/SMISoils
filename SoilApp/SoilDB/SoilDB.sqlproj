@@ -14,7 +14,7 @@
     <RootNamespace>SoilDB</RootNamespace>
     <AssemblyName>SoilDB</AssemblyName>
     <ModelCollation>1033,CI</ModelCollation>
-    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
@@ -58,32 +58,39 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Tables\" />
-    <Folder Include="Stored Procedures\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="Tables\Analyses.sql" />
-    <Build Include="Tables\AnalysesNutrients.sql" />
-    <Build Include="Tables\DimensionedQuantities.sql" />
-    <Build Include="Tables\DimensionedTypes.sql" />
-    <Build Include="Tables\Fields.sql" />
-    <Build Include="Tables\FieldsNutrients.sql" />
-    <Build Include="Tables\Operations.sql" />
-    <Build Include="Tables\Rotations.sql" />
-    <Build Include="Tables\SoilSamples.sql" />
-    <Build Include="Tables\SoilSamplesNutrients.sql" />
-    <Build Include="Tables\Units.sql" />
-    <Build Include="Stored Procedures\spDimensionedQuantities_GetAllByType.sql" />
-    <Build Include="Stored Procedures\spDimensionedQuantities_Insert.sql" />
-    <Build Include="Stored Procedures\spDimensionedTypes_GetAll.sql" />
-    <Build Include="Stored Procedures\spDimensionedTypes_GetByName.sql" />
-    <Build Include="Stored Procedures\spFields_Upsert.sql" />
-    <Build Include="Stored Procedures\spRotations_GetAllAfterYear.sql" />
-    <Build Include="Stored Procedures\spRotations_Upsert.sql" />
-    <Build Include="Stored Procedures\spUnits_GetAll.sql" />
-    <Build Include="Stored Procedures\spUnits_Insert.sql" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SoilDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\SoilSamples.sql" />
+    <Build Include="dbo\Tables\Fields.sql" />
+    <Build Include="dbo\Tables\Operations.sql" />
+    <Build Include="dbo\Tables\Rotations.sql" />
+    <Build Include="dbo\Tables\Units.sql" />
+    <Build Include="dbo\Tables\AnalysesNutrients.sql" />
+    <Build Include="dbo\Tables\Analyses.sql" />
+    <Build Include="dbo\Tables\Nutrients.sql" />
+    <Build Include="dbo\Tables\Products.sql" />
+    <Build Include="dbo\Tables\FieldsNutrients.sql" />
+    <Build Include="dbo\Tables\SoilSamplesNutrients.sql" />
+    <Build Include="dbo\Stored Procedures\spSoilSamplesNutrients_GetFieldIdAndSampleYear.sql" />
+    <Build Include="dbo\Stored Procedures\spFields_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\spRotations_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\spUnits_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spUnits_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spNutrients_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spProducts_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spProducts_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spNutrients_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spSoilSamplesNutrients_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spFieldsNutrients_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\spSoilSamples_Insert.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SoilDB.publish.xml" />
   </ItemGroup>
 </Project>
