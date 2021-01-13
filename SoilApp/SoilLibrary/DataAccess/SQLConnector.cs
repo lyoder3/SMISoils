@@ -10,11 +10,39 @@ namespace SoilLibrary.DataAccess
 {
     public class SQLConnector : IDataConnection
     {
-        private const string db = "Soil";
+        private const string db = "SoilTest";
 
         public void CreateAnalysis(AnalysisModel model)
         {
-            throw new System.NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ProductId", model.ProductId);
+                p.Add("@AnalysisName", model.AnalysisName);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                try
+                {
+                    connection.Execute("dbo.spAnalyses_Insert", p, commandType: CommandType.StoredProcedure);
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception(ex.HelpLink, new Exception(ex.Message));
+                }
+
+                model.Id = p.Get<int>("@id");
+
+                foreach (AnalysisNutrientModel an in model.Nutrients)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@AnalysisId", model.Id);
+                    p.Add("@NutrientId", an.NutrientId);
+                    p.Add("@Amount", an.Amount);
+
+                    connection.Execute("dbo.spAnalysisNutrients_Insert", p, commandType: CommandType.StoredProcedure);
+                }
+            }
+
         }
         public void CreateNutrient(NutrientModel model)
         {
@@ -180,6 +208,67 @@ namespace SoilLibrary.DataAccess
                 return connection.Query<NutrientModel>
                     ("dbo.spNutrients_GetAll").ToList();
             }
+        }
+
+        public IList<AnalysisModel> GetAnalyses_ByProductId(int productId)
+        {
+            IList<AnalysisModel> output;
+
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                if (productId > 0)
+                {
+                    p.Add("@ProductId", productId);
+                }
+
+                output = connection
+                    .Query<AnalysisModel>("spAnalyses_GetByProductId", p, commandType: CommandType.StoredProcedure)
+                    .ToList();
+                 
+            }
+
+            return output;
+        }
+
+        public UnitModel GetUnit_ById(int unitId)
+        {
+            UnitModel output = new UnitModel();
+
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                
+                if (unitId > 0)
+                {
+                    p.Add("@UnitId", unitId);
+
+                    output = connection
+                        .Query<UnitModel>("spUnits_GetById", p, commandType: CommandType.StoredProcedure).First();
+                }
+
+
+            }
+
+            return output;
+        }
+        public NutrientModel GetNutrient_ById(int nutrientId)
+        {
+            NutrientModel output = new NutrientModel();
+
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+
+                if (nutrientId > 0)
+                {
+                    p.Add("@NutrientId", nutrientId);
+
+                    output = connection
+                        .Query<NutrientModel>("spNutrients_GetById", p, commandType: CommandType.StoredProcedure).First();
+                }
+            }
+            return output;
         }
     }
 }

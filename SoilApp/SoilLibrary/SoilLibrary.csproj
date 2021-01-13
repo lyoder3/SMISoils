@@ -118,6 +118,7 @@
     <Compile Include="DataAccess\Interfaces\IGoogleSheetConnector.cs" />
     <Compile Include="DataAccess\MasterSheet.cs" />
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Models\AnalysisNutrientModel.cs" />
     <Compile Include="Models\NutrientModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\UnitModel.cs" />

@@ -20,11 +20,11 @@ namespace SoilLibrary.Models
         /// <summary>
         /// Unique name given to this analyiss
         /// </summary>
-        public string Name { get; set; }
+        public string AnalysisName { get; set; }
         /// <summary>
         /// List of nutrient levels in this analysis
         /// </summary>
-        public List<SoilSampleNutrientModel> Nutrients { get; set; }
+        public IList<AnalysisNutrientModel> Nutrients { get; set; }
 
         public AnalysisModel()
         {

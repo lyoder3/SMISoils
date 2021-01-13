@@ -76,6 +76,7 @@ namespace SMISoilUI
             this.createAnalysesFormButton.TabIndex = 0;
             this.createAnalysesFormButton.Text = "New Analysis";
             this.createAnalysesFormButton.UseVisualStyleBackColor = true;
+            this.createAnalysesFormButton.Click += new System.EventHandler(this.createAnalysesFormButton_Click);
             // 
             // createOperationsFormButton
             // 

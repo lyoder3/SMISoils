@@ -44,5 +44,11 @@ namespace SMISoilUI
             Form createNutrientForm = new CreateNutrientForm();
             createNutrientForm.ShowDialog();
         }
+
+        private void createAnalysesFormButton_Click(object sender, EventArgs e)
+        {
+            Form createAnalysisForm = new CreateAnalysisForm();
+            createAnalysisForm.ShowDialog();
+        }
     }
 }

@@ -16,10 +16,14 @@ namespace SoilLibrary.DataAccess
         void CreateSampleNutrients_Batch(IList<SoilSampleNutrientModel> models);
         void CreateUnit(UnitModel model);
         IList<UnitModel> GetUnits_All();
+        UnitModel GetUnit_ById(int unitId);
 
         IList<ProductModel> GetProducts_All();
 
         IList<NutrientModel> GetNutrients_All();
+        NutrientModel GetNutrient_ById(int nutrientId);
+
+        IList<AnalysisModel> GetAnalyses_ByProductId(int productId);
 
     }
 }
