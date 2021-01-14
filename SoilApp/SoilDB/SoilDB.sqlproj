@@ -90,6 +90,9 @@
     <Build Include="dbo\Stored Procedures\spFieldsNutrients_Upsert.sql" />
     <Build Include="dbo\Stored Procedures\spSoilSamples_Insert.sql" />
     <Build Include="dbo\Stored Procedures\spUnits_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\spFields_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spFields_GetByFarm.sql" />
+    <Build Include="dbo\Stored Procedures\spFieldsNutrients_Filter.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SoilDB.publish.xml" />

@@ -132,7 +132,7 @@ namespace SoilLibrary.DataAccess
                     connection.Execute("dbo.spFieldsNutrients_Upsert", p, commandType: CommandType.StoredProcedure);
 
                 }
-                
+
             }
         }
 
@@ -201,7 +201,7 @@ namespace SoilLibrary.DataAccess
                 output = connection
                     .Query<AnalysisModel>("spAnalyses_GetByProductId", p, commandType: CommandType.StoredProcedure)
                     .ToList();
-                 
+
             }
 
             return output;
@@ -214,7 +214,7 @@ namespace SoilLibrary.DataAccess
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
-                
+
                 if (unitId > 0)
                 {
                     p.Add("@UnitId", unitId);
@@ -246,5 +246,61 @@ namespace SoilLibrary.DataAccess
             }
             return output;
         }
+
+        public IList<FieldModel> GetFields(string farmName)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                if (farmName == "ALL")
+                {
+                    return connection.Query<FieldModel>("spFields_GetAll", commandType: CommandType.StoredProcedure).ToList();
+                }
+                else
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@FarmName", farmName);
+                    return connection.Query<FieldModel>("spFields_GetByFarm", p, commandType: CommandType.StoredProcedure).ToList();
+                }
+
+            }
+        }
+
+        public IList<int> GetRotationYears()
+        {
+            IList<int> output = new List<int>();
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@OldestYear", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                p.Add("@NewestYear", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("spRotations_GetYearRange", commandType: CommandType.StoredProcedure);
+
+                output.Add(p.Get<int>("@OldestYear"));
+                output.Add(p.Get<int>("@NewestYear"));
+            }
+
+            return output;
+        }
+
+        public IList<FilteredFieldNutrientModel> GetFieldsNutrients_Filter(string farmName,
+                                            int rotationYear, int nutrientId, int productId)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                if (farmName != "ALL")
+                {
+                    p.Add("@Farm", farmName);
+                }
+                p.Add("@RotationYear", rotationYear);
+                p.Add("@NutrientId", nutrientId);
+                p.Add("@CropId", productId);
+
+                return connection.Query<FilteredFieldNutrientModel>
+                    ("spFieldsNutrients_Filter", p, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
     }
+   
 }

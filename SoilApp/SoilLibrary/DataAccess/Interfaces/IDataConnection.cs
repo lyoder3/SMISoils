@@ -21,6 +21,11 @@ namespace SoilLibrary.DataAccess
         NutrientModel GetNutrient_ById(int nutrientId);
 
         IList<AnalysisModel> GetAnalyses_ByProductId(int productId);
+        IList<FieldModel> GetFields(string farmName);
+
+        IList<int> GetRotationYears();
+
+        IList<FilteredFieldNutrientModel> GetFieldsNutrients_Filter(string farmName, int rotationYear, int nutrientId, int productId);
 
     }
 }
