@@ -133,6 +133,12 @@
     <Compile Include="CreateUnitForm.Designer.cs">
       <DependentUpon>CreateUnitForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetSoilDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetSoilDataForm.Designer.cs">
+      <DependentUpon>GetSoilDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUnitForm.resx">
       <DependentUpon>CreateUnitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GetSoilDataForm.resx">
+      <DependentUpon>GetSoilDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>

@@ -9,7 +9,7 @@ CREATE PROCEDURE [dbo].[spSoilSamplesNutrients_Insert]
 	@NutrientId int,
 	@Amount decimal(8,3),
 	@Goal int,
-	@Id int=0 output
+	@id int=0 output
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -19,6 +19,6 @@ BEGIN
 	INSERT INTO dbo.SoilSamplesNutrients(SampleId, NutrientId, Amount, Goal)
 	VALUES (@SoilSampleId, @NutrientId, @Amount, @Goal);
 
-	SELECT @Id = SCOPE_IDENTITY();
+	SELECT @id = SCOPE_IDENTITY();
 	
 END

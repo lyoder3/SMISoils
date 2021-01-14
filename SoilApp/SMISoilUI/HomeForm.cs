@@ -20,5 +20,11 @@ namespace SMISoilUI
             Form createMenuForm = new CreateMenuForm();
             createMenuForm.Show();
         }
+
+        private void getSoilDataMenuButton_Click(object sender, EventArgs e)
+        {
+            Form getSoilDataForm = new GetSoilDataForm();
+            getSoilDataForm.Show();
+        }
     }
 }
