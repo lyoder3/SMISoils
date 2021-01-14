@@ -8,7 +8,7 @@ namespace SoilLibrary.Utilities
 {
     public class MasterSheetProcessor : IMasterSheetProcessor
     {
-        private MasterSheetColumnProcessor columnProcessor { get; set; }
+        private MasterSheetColumnProcessor ColumnProcessor { get; set; }
         private IList<IList<object>> RawRows { get; set; }
         private IList<FieldModel> Fields { get; set; } = new List<FieldModel>() { };
         private IList<ProductModel> Crops { get; set; }
@@ -28,17 +28,17 @@ namespace SoilLibrary.Utilities
             var headers = RawRows[0];
             RawRows.RemoveAt(0);
 
-            columnProcessor = new MasterSheetColumnProcessor(headers);
+            ColumnProcessor = new MasterSheetColumnProcessor(headers);
         }
         public void ProcessRows()
         {
             PopHeaders();
-            columnProcessor.MapColumns();
+            ColumnProcessor.MapColumns();
 
-            FieldNameIndex = columnProcessor.FieldNameIndex;
-            FarmNameIndex = columnProcessor.FarmNameIndex;
-            IdIndex = columnProcessor.IdIndex;
-            RotationColumns = columnProcessor.RotationColumns;
+            FieldNameIndex = ColumnProcessor.FieldNameIndex;
+            FarmNameIndex = ColumnProcessor.FarmNameIndex;
+            IdIndex = ColumnProcessor.IdIndex;
+            RotationColumns = ColumnProcessor.RotationColumns;
 
             foreach (var row in RawRows)
             {
@@ -52,8 +52,8 @@ namespace SoilLibrary.Utilities
             {
                 Field = (string)row[FieldNameIndex],
                 Farm = (string)row[FarmNameIndex],
+                Id = Convert.ToInt32(row[IdIndex])
             };
-            GlobalConfig.Connection.CreateField(newField);
 
             foreach (var rotationColumn in RotationColumns)
             {
@@ -68,21 +68,21 @@ namespace SoilLibrary.Utilities
                 if (plannedCrop.Length > 0)
                 {
                     // convert names to lowercase so just the text is being compared
-                    IList<ProductModel> matchedCrop = Crops.Where(crop => crop.ItemName.ToLower() == plannedCrop.ToLower())
-                                                     .ToList();
+                    ProductModel matchedCrop = Crops.Where(crop => crop.ItemName.ToLower() == plannedCrop.ToLower())
+                                                     .ToList().First();
 
-                    if (matchedCrop.Count != 1)
+                    if (matchedCrop == null)
                     {
-                        throw new Exception($"Crop matching error. Matched crop count is: {matchedCrop.Count}");
+                        throw new Exception($"Crop matching error. Current crop count is: {plannedCrop}");
                     }
                     else
                     {
-                        newRotation.ProductId = matchedCrop[0].Id;
+                        newRotation.ProductId = matchedCrop.Id;
                         newField.Rotations.Add(newRotation);
                     }
                 }
             }
-            GlobalConfig.Connection.CreateRotation_Batch(newField.Rotations);
+            GlobalConfig.Connection.CreateField(newField);
             Fields.Add(newField);
             IList<object> updateRow = new string[] { newField.Farm, newField.Field, newField.Id.ToString() };
 

@@ -12,7 +12,7 @@ namespace SoilLibrary.Utilities
         private static readonly Regex FarmNameRegex = new Regex("^Farm");
         private static readonly Regex FieldNameRegex = new Regex("^Field");
         private static readonly Regex RotationRegex = new Regex("(?<RotationYear>\\d{4}) SPRING");
-        private static readonly Regex IdRegex = new Regex("^id");
+        private static readonly Regex IdRegex = new Regex("^Id");
 
         private IList<object> Headers { get; set; }
         public int FieldNameIndex { get; set; }

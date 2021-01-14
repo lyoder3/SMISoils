@@ -2,7 +2,7 @@
     [id]              INT            IDENTITY (1, 1) NOT NULL,
     [FieldId]         INT            NOT NULL,
     [NutrientId]      INT            NOT NULL,
-    [Amount]          DECIMAL (8, 3) NOT NULL,
+    [Amount]          DECIMAL (10, 5) NOT NULL,
     [Goal]            INT            NOT NULL,
     [LastSampledYear] NCHAR (10)     NULL,
     CONSTRAINT [PK_FieldsNutrients] PRIMARY KEY CLUSTERED ([id] ASC),

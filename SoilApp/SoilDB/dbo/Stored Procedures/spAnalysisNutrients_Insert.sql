@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spAnalysisNutrients_Insert]
 	@AnalysisId int,
 	@NutrientId int,
-	@Amount decimal(8,3),
+	@Amount decimal(10,5),
 	@id int=0 output
 AS
 BEGIN

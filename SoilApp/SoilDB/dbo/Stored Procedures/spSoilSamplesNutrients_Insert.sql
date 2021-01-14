@@ -7,7 +7,7 @@ CREATE PROCEDURE [dbo].[spSoilSamplesNutrients_Insert]
 	-- Add the parameters for the stored procedure here
 	@SoilSampleId int,
 	@NutrientId int,
-	@Amount decimal(8,3),
+	@Amount decimal(10,5),
 	@Goal int,
 	@id int=0 output
 AS

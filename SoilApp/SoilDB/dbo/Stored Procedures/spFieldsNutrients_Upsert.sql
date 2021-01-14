@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spFieldsNutrients_Upsert]
 	@FieldId int,
 	@NutrientId int,
-	@Amount int,
+	@Amount decimal(10,5),
 	@Goal int,
 	@SampleYear int,
 	@id int=0 output

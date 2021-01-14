@@ -90,7 +90,9 @@ namespace SoilLibrary.Utilities
                 newNutrientRecord.SoilSampleId = newSample.Id;
                 decimal currentLevel = Convert.ToDecimal(sample[NutrientMappings[key]]);
 
-                Regex recommendationRegex = new Regex($"{key} Rec \\d");
+                newNutrientRecord.Amount = currentLevel * SoilSampleNutrientModel.PPMConversionFactor;
+
+                Regex recommendationRegex = new Regex($"^{key}\\sRec\\s\\d");
                 var recommendationColumns = RecommendationMappings
                     .Where(pair => recommendationRegex.IsMatch(pair.Key))
                     .Select(pair => pair.Value);
@@ -102,18 +104,16 @@ namespace SoilLibrary.Utilities
                     
                     newNutrientRecord.Goal = Convert.ToInt32(
                         Math.Round(
-                            totalRec + currentLevel * SoilSampleNutrientModel.PPMConversionFactor, 0));
-                    newNutrientRecord.Amount = currentLevel;
+                            totalRec + newNutrientRecord.Amount, 0));
                 }
                 else
                 {
                     newNutrientRecord.NutrientId = Convert.ToInt32(key);
                     newNutrientRecord.Goal = 0;
-                    newNutrientRecord.Amount = currentLevel;
                 }
                 newSample.Nutrients.Add(newNutrientRecord);
             }
-            GlobalConfig.Connection.CreateSampleNutrients_Batch(newSample.Nutrients);
+            GlobalConfig.Connection.CreateSoilSample(newSample);
             Samples.Add(newSample);
         }
     }
