@@ -2,6 +2,7 @@
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Util.Store;
+using OfficeOpenXml;
 using SoilLibrary.DataAccess;
 using System;
 using System.Configuration;
@@ -21,6 +22,7 @@ namespace SoilLibrary
 
         public static void Initialize()
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             SQLConnector sql = new SQLConnector();
             Connection = sql;
             GoogleCreds = GoogleCredentials();

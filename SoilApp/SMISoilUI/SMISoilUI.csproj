@@ -97,29 +97,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateAnalysisForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateAnalysisForm.Designer.cs">
-      <DependentUpon>CreateAnalysisForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CreateMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CreateMenuForm.Designer.cs">
       <DependentUpon>CreateMenuForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CreateNutrientForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateNutrientForm.Designer.cs">
-      <DependentUpon>CreateNutrientForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CreateProductForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateProductForm.Designer.cs">
-      <DependentUpon>CreateProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateSoilSampleForm.cs">
       <SubType>Form</SubType>
@@ -127,17 +109,17 @@
     <Compile Include="CreateSoilSampleForm.Designer.cs">
       <DependentUpon>CreateSoilSampleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateUnitForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateUnitForm.Designer.cs">
-      <DependentUpon>CreateUnitForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="GetSoilDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GetSoilDataForm.Designer.cs">
       <DependentUpon>GetSoilDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetSoilSampleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetSoilSampleForm.Designer.cs">
+      <DependentUpon>GetSoilSampleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
@@ -147,26 +129,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CreateAnalysisForm.resx">
-      <DependentUpon>CreateAnalysisForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CreateMenuForm.resx">
       <DependentUpon>CreateMenuForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CreateNutrientForm.resx">
-      <DependentUpon>CreateNutrientForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CreateProductForm.resx">
-      <DependentUpon>CreateProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateSoilSampleForm.resx">
       <DependentUpon>CreateSoilSampleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateUnitForm.resx">
-      <DependentUpon>CreateUnitForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GetSoilDataForm.resx">
       <DependentUpon>GetSoilDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GetSoilSampleForm.resx">
+      <DependentUpon>GetSoilSampleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>

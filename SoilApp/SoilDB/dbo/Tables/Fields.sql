@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Fields] (
     [id]    INT          IDENTITY (1, 1) NOT NULL,
     [Farm]  VARCHAR (25) NOT NULL,
-    [Field] CHAR (3)     NOT NULL,
+    [Field] NVARCHAR(8)     NOT NULL,
     CONSTRAINT [PK_Fields] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 

@@ -15,8 +15,6 @@ namespace SoilLibrary.Utilities
     {
         public static void WriteSoilData(Dictionary<string, object> parameters)
         {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            
             StringBuilder stringBuilder = new StringBuilder();
             string folderPath = (string)parameters["FolderPath"];
 
@@ -37,8 +35,8 @@ namespace SoilLibrary.Utilities
 
             FileInfo newFile = FileOutputUtil.GetFileInfo(directory, outputFileName, deleteIfExists: true);
 
-            List<string> headers = new List<string>()
-            {
+            string[] headers = new string[]
+            { 
                 "Farm",
                 "Field",
                 "Nutrient",
@@ -57,12 +55,68 @@ namespace SoilLibrary.Utilities
                         productId: crop.Id
                     );
                 var newSheet = package.Workbook.Worksheets.Add("Results");
-                newSheet.Cells["A1:G1"].Value = headers;
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    newSheet.Cells[1, i+1].Value = headers[i];
+                }
+                
                 var newRange = newSheet.Cells["A2"].LoadFromCollection(models);
 
                 newRange.AutoFitColumns();
 
                 package.Save();
+            }
+        }
+
+        public static void WriteSoilSampleIntentions(Dictionary<string, object> parameters)
+        {
+            //TODO - Finish writing these files
+            StringBuilder stringBuilder = new StringBuilder();
+
+            string folderPath = (string) parameters["FolderPath"];
+
+            int rotationYear = Convert.ToInt32(parameters["RotationYear"]);
+            ProductModel crop = (ProductModel)parameters["Crop"];
+
+            int lastSampledYear = Convert.ToInt32(parameters["LastSampled"]);
+
+            stringBuilder.Append(rotationYear);
+            stringBuilder.Append(crop.ItemName);
+            stringBuilder.Append("SoilSampleIntentions");
+            stringBuilder.Append(".xlsx");
+
+            string[] headers = new string[]
+            {
+                "id",
+                "Farm",
+                "Field",
+                "Rotation Year",
+                "Crop",
+            };
+
+            string outputFileName = stringBuilder.ToString();
+
+            DirectoryInfo directory = new DirectoryInfo(folderPath);
+
+            FileInfo newFile = FileOutputUtil.GetFileInfo(directory, outputFileName, deleteIfExists: true);
+
+            using (var package = new ExcelPackage(newFile))
+            {
+                IList<SoilSampleIntentionsModel> intentions = GlobalConfig.Connection
+                                                .GetSoilSampleIntentions(lastSampledYear, rotationYear, crop.Id);
+                
+                var newSheet = package.Workbook.Worksheets.Add("Results");
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    newSheet.Cells[1, i + 1].Value = headers[i];
+                }
+
+                var newRange = newSheet.Cells["A2"].LoadFromCollection(intentions);
+
+                newRange.AutoFitColumns();
+
+                package.Save();
+
             }
         }
     }

@@ -5,7 +5,7 @@
 	@NutrientId int = NULL
 AS
 BEGIN
-	SELECT f.Farm, f.Field, n.ItemName as Nutrient, fn.Amount,fn.Goal, fn.LastSampledYear, p.ItemName as Crop
+	SELECT f.Farm, f.Field, n.ItemName as Nutrient, fn.Amount,fn.Goal, fn.LastSampledYear as LastSampled, p.ItemName as Crop
 	FROM dbo.FieldsNutrients fn
 	INNER JOIN dbo.Nutrients n on fn.NutrientId = n.id
 	INNER JOIN dbo.Fields f on fn.FieldId = f.id

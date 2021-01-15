@@ -13,6 +13,18 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    INSERT INTO dbo.Units (Unit) VALUES (@Unit);
-	SELECT @id = SCOPE_IDENTITY();
+	  SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	BEGIN TRANSACTION;
+	UPDATE dbo.Units
+	SET Unit = @Unit
+	WHERE 
+		dbo.Units.id = @id;
+	IF @@ROWCOUNT = 0
+	BEGIN
+		INSERT INTO dbo.Units (Unit) 
+		VALUES (@Unit);
+
+		SELECT @id = SCOPE_IDENTITY();
+	END
+	COMMIT TRANSACTION;
 END

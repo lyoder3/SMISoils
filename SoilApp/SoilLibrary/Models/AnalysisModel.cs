@@ -14,14 +14,6 @@ namespace SoilLibrary.Models
         /// </summary>
         public int ProductId { get; set; }
         /// <summary>
-        /// Timestamp of when this analysis was created/recorded
-        /// </summary>
-        public DateTime Timestamp { get; set; }
-        /// <summary>
-        /// Unique name given to this analyiss
-        /// </summary>
-        public string AnalysisName { get; set; }
-        /// <summary>
         /// List of nutrient levels in this analysis
         /// </summary>
         public IList<AnalysisNutrientModel> Nutrients { get; set; }

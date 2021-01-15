@@ -93,6 +93,10 @@
     <Build Include="dbo\Stored Procedures\spFields_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\spFields_GetByFarm.sql" />
     <Build Include="dbo\Stored Procedures\spFieldsNutrients_Filter.sql" />
+    <Build Include="dbo\Stored Procedures\spNutrients_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\spRotationsSoilSamples_GenerateUpcomingIntentions.sql" />
+    <Build Include="dbo\Stored Procedures\spAnalyses_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spAnalysisNutrients_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SoilDB.publish.xml" />

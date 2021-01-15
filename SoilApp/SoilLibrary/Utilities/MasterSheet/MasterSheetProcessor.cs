@@ -6,10 +6,9 @@ using System.Linq;
 
 namespace SoilLibrary.Utilities
 {
-    public class MasterSheetProcessor : IMasterSheetProcessor
+    public class MasterSheetProcessor : GoogleSheetProcessor, IMasterSheetProcessor
     {
         private MasterSheetColumnProcessor ColumnProcessor { get; set; }
-        private IList<IList<object>> RawRows { get; set; }
         private IList<FieldModel> Fields { get; set; } = new List<FieldModel>() { };
         private IList<ProductModel> Crops { get; set; }
         public IList<IList<object>> IdUpdateList { get; private set; } = new List<IList<object>>();
@@ -20,19 +19,14 @@ namespace SoilLibrary.Utilities
 
         public MasterSheetProcessor(IList<IList<object>> rows)
         {
-            RawRows = rows;
-            Crops = GlobalConfig.Connection.GetProducts_All();
-        }
-        public void PopHeaders()
-        {
-            var headers = RawRows[0];
-            RawRows.RemoveAt(0);
-
-            ColumnProcessor = new MasterSheetColumnProcessor(headers);
-        }
-        public void ProcessRows()
-        {
+            Rows = rows;
             PopHeaders();
+            Crops = GlobalConfig.Connection.GetProducts_All();
+            ColumnProcessor = new MasterSheetColumnProcessor(Headers);
+        }
+        
+        public override void ProcessRows()
+        {
             ColumnProcessor.MapColumns();
 
             FieldNameIndex = ColumnProcessor.FieldNameIndex;
@@ -40,13 +34,13 @@ namespace SoilLibrary.Utilities
             IdIndex = ColumnProcessor.IdIndex;
             RotationColumns = ColumnProcessor.RotationColumns;
 
-            foreach (var row in RawRows)
+            foreach (var row in Rows)
             {
                 ProcessRow(row);
             }
         }
 
-        public void ProcessRow(IList<object> row)
+        public override void ProcessRow(IList<object> row)
         {
             FieldModel newField = new FieldModel()
             {
@@ -86,7 +80,7 @@ namespace SoilLibrary.Utilities
             Fields.Add(newField);
             IList<object> updateRow = new string[] { newField.Farm, newField.Field, newField.Id.ToString() };
 
-            IdUpdateList.Add(updateRow);
+            UpdateValues.Add(updateRow);
 
         }
 

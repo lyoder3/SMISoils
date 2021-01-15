@@ -1,7 +1,7 @@
 ﻿
 namespace SMISoilUI
 {
-    partial class GetSoilDataForm
+    partial class CreateSoilSampleIntentionsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,69 +29,45 @@ namespace SMISoilUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GetSoilDataForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateSoilSampleIntentionsForm));
             this.filtersGroupBox = new System.Windows.Forms.GroupBox();
             this.yearValue = new System.Windows.Forms.TextBox();
-            this.nutrientLabel = new System.Windows.Forms.Label();
-            this.nutrientDropDown = new System.Windows.Forms.ComboBox();
             this.cropLabel = new System.Windows.Forms.Label();
             this.cropDropDown = new System.Windows.Forms.ComboBox();
             this.yearLabel = new System.Windows.Forms.Label();
-            this.farmNameLabel = new System.Windows.Forms.Label();
-            this.farmDropDown = new System.Windows.Forms.ComboBox();
             this.generateSoilDataButton = new System.Windows.Forms.Button();
+            this.lastSampledLabel = new System.Windows.Forms.Label();
+            this.lastSampledYearValue = new System.Windows.Forms.TextBox();
             this.folderBrowserBox = new System.Windows.Forms.FolderBrowserDialog();
             this.filtersGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // filtersGroupBox
             // 
+            this.filtersGroupBox.Controls.Add(this.lastSampledYearValue);
             this.filtersGroupBox.Controls.Add(this.yearValue);
-            this.filtersGroupBox.Controls.Add(this.nutrientLabel);
-            this.filtersGroupBox.Controls.Add(this.nutrientDropDown);
             this.filtersGroupBox.Controls.Add(this.cropLabel);
+            this.filtersGroupBox.Controls.Add(this.lastSampledLabel);
             this.filtersGroupBox.Controls.Add(this.cropDropDown);
             this.filtersGroupBox.Controls.Add(this.yearLabel);
-            this.filtersGroupBox.Controls.Add(this.farmNameLabel);
-            this.filtersGroupBox.Controls.Add(this.farmDropDown);
-            this.filtersGroupBox.Location = new System.Drawing.Point(23, 42);
+            this.filtersGroupBox.Location = new System.Drawing.Point(35, 53);
             this.filtersGroupBox.Name = "filtersGroupBox";
-            this.filtersGroupBox.Size = new System.Drawing.Size(416, 310);
-            this.filtersGroupBox.TabIndex = 0;
+            this.filtersGroupBox.Size = new System.Drawing.Size(416, 212);
+            this.filtersGroupBox.TabIndex = 1;
             this.filtersGroupBox.TabStop = false;
             this.filtersGroupBox.Text = "Filters";
             // 
             // yearValue
             // 
-            this.yearValue.Location = new System.Drawing.Point(123, 107);
+            this.yearValue.Location = new System.Drawing.Point(192, 39);
             this.yearValue.Name = "yearValue";
-            this.yearValue.Size = new System.Drawing.Size(273, 35);
+            this.yearValue.Size = new System.Drawing.Size(208, 35);
             this.yearValue.TabIndex = 10;
-            // 
-            // nutrientLabel
-            // 
-            this.nutrientLabel.AutoSize = true;
-            this.nutrientLabel.Location = new System.Drawing.Point(17, 233);
-            this.nutrientLabel.Name = "nutrientLabel";
-            this.nutrientLabel.Size = new System.Drawing.Size(90, 30);
-            this.nutrientLabel.TabIndex = 9;
-            this.nutrientLabel.Text = "Nutrient";
-            // 
-            // nutrientDropDown
-            // 
-            this.nutrientDropDown.AllowDrop = true;
-            this.nutrientDropDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.nutrientDropDown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.nutrientDropDown.FormattingEnabled = true;
-            this.nutrientDropDown.Location = new System.Drawing.Point(123, 230);
-            this.nutrientDropDown.Name = "nutrientDropDown";
-            this.nutrientDropDown.Size = new System.Drawing.Size(274, 38);
-            this.nutrientDropDown.TabIndex = 8;
             // 
             // cropLabel
             // 
             this.cropLabel.AutoSize = true;
-            this.cropLabel.Location = new System.Drawing.Point(17, 173);
+            this.cropLabel.Location = new System.Drawing.Point(6, 151);
             this.cropLabel.Name = "cropLabel";
             this.cropLabel.Size = new System.Drawing.Size(57, 30);
             this.cropLabel.TabIndex = 7;
@@ -103,63 +79,59 @@ namespace SMISoilUI
             this.cropDropDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cropDropDown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cropDropDown.FormattingEnabled = true;
-            this.cropDropDown.Location = new System.Drawing.Point(123, 170);
+            this.cropDropDown.Location = new System.Drawing.Point(192, 151);
             this.cropDropDown.Name = "cropDropDown";
-            this.cropDropDown.Size = new System.Drawing.Size(274, 38);
+            this.cropDropDown.Size = new System.Drawing.Size(208, 38);
             this.cropDropDown.TabIndex = 6;
             // 
             // yearLabel
             // 
             this.yearLabel.AutoSize = true;
-            this.yearLabel.Location = new System.Drawing.Point(17, 110);
+            this.yearLabel.Location = new System.Drawing.Point(6, 42);
             this.yearLabel.Name = "yearLabel";
-            this.yearLabel.Size = new System.Drawing.Size(52, 30);
+            this.yearLabel.Size = new System.Drawing.Size(136, 30);
             this.yearLabel.TabIndex = 5;
-            this.yearLabel.Text = "Year";
-            // 
-            // farmNameLabel
-            // 
-            this.farmNameLabel.AutoSize = true;
-            this.farmNameLabel.Location = new System.Drawing.Point(17, 51);
-            this.farmNameLabel.Name = "farmNameLabel";
-            this.farmNameLabel.Size = new System.Drawing.Size(58, 30);
-            this.farmNameLabel.TabIndex = 1;
-            this.farmNameLabel.Text = "Farm";
-            // 
-            // farmDropDown
-            // 
-            this.farmDropDown.AllowDrop = true;
-            this.farmDropDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.farmDropDown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.farmDropDown.FormattingEnabled = true;
-            this.farmDropDown.Location = new System.Drawing.Point(123, 48);
-            this.farmDropDown.Name = "farmDropDown";
-            this.farmDropDown.Size = new System.Drawing.Size(274, 38);
-            this.farmDropDown.TabIndex = 0;
+            this.yearLabel.Text = "Rotation Year";
             // 
             // generateSoilDataButton
             // 
-            this.generateSoilDataButton.Location = new System.Drawing.Point(458, 161);
+            this.generateSoilDataButton.Location = new System.Drawing.Point(517, 126);
             this.generateSoilDataButton.Name = "generateSoilDataButton";
             this.generateSoilDataButton.Size = new System.Drawing.Size(122, 65);
-            this.generateSoilDataButton.TabIndex = 1;
+            this.generateSoilDataButton.TabIndex = 2;
             this.generateSoilDataButton.Text = "Generate";
             this.generateSoilDataButton.UseVisualStyleBackColor = true;
             this.generateSoilDataButton.Click += new System.EventHandler(this.generateSoilDataButton_Click);
             // 
-            // GetSoilDataForm
+            // lastSampledLabel
+            // 
+            this.lastSampledLabel.AutoSize = true;
+            this.lastSampledLabel.Location = new System.Drawing.Point(5, 100);
+            this.lastSampledLabel.Name = "lastSampledLabel";
+            this.lastSampledLabel.Size = new System.Drawing.Size(181, 30);
+            this.lastSampledLabel.TabIndex = 5;
+            this.lastSampledLabel.Text = "Last Sampled Year";
+            // 
+            // lastSampledYearValue
+            // 
+            this.lastSampledYearValue.Location = new System.Drawing.Point(192, 97);
+            this.lastSampledYearValue.Name = "lastSampledYearValue";
+            this.lastSampledYearValue.Size = new System.Drawing.Size(208, 35);
+            this.lastSampledYearValue.TabIndex = 10;
+            // 
+            // CreateSoilSampleIntentionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(608, 387);
+            this.ClientSize = new System.Drawing.Size(675, 358);
             this.Controls.Add(this.generateSoilDataButton);
             this.Controls.Add(this.filtersGroupBox);
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.Name = "GetSoilDataForm";
-            this.Text = "Get Soil Data";
+            this.Name = "CreateSoilSampleIntentionsForm";
+            this.Text = "Get Soil Sample Intentions";
             this.filtersGroupBox.ResumeLayout(false);
             this.filtersGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -169,15 +141,13 @@ namespace SMISoilUI
         #endregion
 
         private System.Windows.Forms.GroupBox filtersGroupBox;
-        private System.Windows.Forms.Label farmNameLabel;
-        private System.Windows.Forms.ComboBox farmDropDown;
-        private System.Windows.Forms.Button generateSoilDataButton;
+        private System.Windows.Forms.TextBox yearValue;
         private System.Windows.Forms.Label cropLabel;
         private System.Windows.Forms.ComboBox cropDropDown;
         private System.Windows.Forms.Label yearLabel;
-        private System.Windows.Forms.Label nutrientLabel;
-        private System.Windows.Forms.ComboBox nutrientDropDown;
-        private System.Windows.Forms.TextBox yearValue;
+        private System.Windows.Forms.Button generateSoilDataButton;
+        private System.Windows.Forms.TextBox lastSampledYearValue;
+        private System.Windows.Forms.Label lastSampledLabel;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserBox;
     }
 }

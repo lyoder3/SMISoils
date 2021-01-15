@@ -7,7 +7,9 @@ namespace SoilLibrary.DataAccess
     {
         IGoogleSheetConnector GoogleSheet { get; set; }
 
-        void UpdateFieldIds(IList<IList<object>> values);
+        void Update(MasterSheetTab sheetTab);
         void UpsertFieldsAndRotations();
+
+        void UpsertUnits();
     }
 }

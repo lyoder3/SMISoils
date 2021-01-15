@@ -1,6 +1,6 @@
-﻿using SoilLibrary;
-using SoilLibrary.Models;
+﻿using SoilLibrary.Models;
 using SoilLibrary.Utilities;
+using SoilLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,17 +13,14 @@ using System.Windows.Forms;
 
 namespace SMISoilUI
 {
-    public partial class GetSoilDataForm : Form
+    public partial class CreateSoilSampleIntentionsForm : Form
     {
-        public IList<string> Farms { get; set; }
-        public IList<FieldModel> Fields { get; set; }
-        public int Year { get; set; }
-        public IList<ProductModel> Crops { get; set; }
-        
-        public IList<NutrientModel> Nutrients { get; set; }
         public string SelectedFilePath { get; set; }
 
-        public GetSoilDataForm()
+        private IList<ProductModel> Products = GlobalConfig.Connection.GetProducts_All();
+
+        public int RotationYear { get; set; }
+        public CreateSoilSampleIntentionsForm()
         {
             InitializeComponent();
             WireUpLists();
@@ -31,26 +28,9 @@ namespace SMISoilUI
 
         private void WireUpLists()
         {
-            Fields = GlobalConfig.Connection.GetFields("ALL");
-
-            Farms = Fields.Select(field => field.Farm).Distinct().ToList();
-
-            Farms.Add("ALL");
-
-            Farms.OrderBy(x => x);
-
-            Crops = GlobalConfig.Connection.GetProducts_All();
-
-            Nutrients = GlobalConfig.Connection.GetNutrients_All();
-
-            farmDropDown.DataSource = Farms;
-            cropDropDown.DataSource = Crops;
+            cropDropDown.DataSource = Products;
             cropDropDown.DisplayMember = "ItemName";
-
-            nutrientDropDown.DataSource = Nutrients;
-            nutrientDropDown.DisplayMember = "ItemName";
         }
-
         private void generateSoilDataButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
@@ -67,15 +47,14 @@ namespace SMISoilUI
 
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
-            parameters.Add("FarmName", farmDropDown.SelectedValue);
             parameters.Add("RotationYear", yearValue.Text);
+            parameters.Add("LastSampled", lastSampledYearValue.Text);
             parameters.Add("FolderPath", SelectedFilePath);
             parameters.Add("Crop", cropDropDown.SelectedItem);
-            parameters.Add("Nutrient", nutrientDropDown.SelectedItem);
 
 
-            ExcelWriter.WriteSoilData(parameters);
-            MessageBox.Show($"File written to: {SelectedFilePath}");
+            ExcelWriter.WriteSoilSampleIntentions(parameters);
+            MessageBox.Show($"File written to:\n {SelectedFilePath}");
         }
     }
 }

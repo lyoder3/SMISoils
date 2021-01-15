@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using SoilLibrary.Exceptions;
 using SoilLibrary;
+using SoilLibrary.Utilities;
 
 namespace SMISoilUI
 {
@@ -13,23 +14,31 @@ namespace SMISoilUI
             InitializeComponent();
         }
 
-        private void createProductFormButton_Click(object sender, EventArgs e)
-        {
-            Form createProductForm = new CreateProductForm();
-            createProductForm.ShowDialog();
-        }
-        
-        private void masterSheetSyncButton_Click(object sender, EventArgs e)
+        private void updateProductsButton_Click(object sender, EventArgs e)
         {
             try
             {
-                GlobalConfig.MasterSheet.UpsertFieldsAndRotations();
+                GlobalConfig.MasterSheet.Update(MasterSheetTab.PRODUCTS);
+            }
+            catch (GoogleSheetUpdateException ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
+            MessageBox.Show("Product update successful!");
+        }
+        
+        private void updateMasterSheetButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GlobalConfig.MasterSheet.Update(MasterSheetTab.MASTER);
             } catch (GoogleSheetUpdateException ex)
             {
                 MessageBox.Show($"ERROR: {ex.Message}");
                 Console.WriteLine(ex.StackTrace);
             }
-            MessageBox.Show("Master Sheet sync successful!");
+            MessageBox.Show("Fields and Rotation update successful!");
         }
 
         private void createSoilSampleFormButton_Click(object sender, EventArgs e)
@@ -39,16 +48,51 @@ namespace SMISoilUI
 
         }
 
-        private void createNutrientFormButton_Click(object sender, EventArgs e)
+        private void updateNutrientsButton_Click(object sender, EventArgs e)
         {
-            Form createNutrientForm = new CreateNutrientForm();
-            createNutrientForm.ShowDialog();
+            try
+            {
+                GlobalConfig.MasterSheet.Update(MasterSheetTab.NUTRIENTS);
+            }
+            catch (GoogleSheetUpdateException ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
+            MessageBox.Show("Nutrient update successful!");
         }
 
         private void createAnalysesFormButton_Click(object sender, EventArgs e)
         {
-            Form createAnalysisForm = new CreateAnalysisForm();
-            createAnalysisForm.ShowDialog();
+            try
+            {
+                GlobalConfig.MasterSheet.Update(MasterSheetTab.ANALYSES);
+            }
+            catch (GoogleSheetUpdateException ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
+            MessageBox.Show("Analyses update successful!");
+        }
+
+        private void updateUnitsButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GlobalConfig.MasterSheet.Update(MasterSheetTab.UNITS);
+            }
+            catch (GoogleSheetUpdateException ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
+            MessageBox.Show("Unit update successful!");
+        }
+
+        private void importIntentionsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

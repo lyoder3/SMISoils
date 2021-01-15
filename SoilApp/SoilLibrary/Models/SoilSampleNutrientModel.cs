@@ -12,9 +12,9 @@ namespace SoilLibrary.Models
         public int Id { get; set; }
         public int NutrientId { get; set; }
         public int SoilSampleId { get; set; }
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
 
-        public int Goal { get; set; }
+        public int? Goal { get; set; }
         /// <summary>
         /// Constructor for creating blank objects of the class
         /// </summary>

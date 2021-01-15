@@ -30,85 +30,98 @@ namespace SMISoilUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateMenuForm));
-            this.masterSheetSyncButton = new System.Windows.Forms.Button();
-            this.createProductFormButton = new System.Windows.Forms.Button();
+            this.updateMasterSheetButton = new System.Windows.Forms.Button();
+            this.updateProductsButton = new System.Windows.Forms.Button();
             this.createSoilSampleFormButton = new System.Windows.Forms.Button();
-            this.createAnalysesFormButton = new System.Windows.Forms.Button();
-            this.createOperationsFormButton = new System.Windows.Forms.Button();
-            this.createNutrientFormButton = new System.Windows.Forms.Button();
+            this.updateAnalysesButton = new System.Windows.Forms.Button();
+            this.importIntentionsButton = new System.Windows.Forms.Button();
+            this.updateNutrientsButton = new System.Windows.Forms.Button();
+            this.updateUnitsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // masterSheetSyncButton
+            // updateMasterSheetButton
             // 
-            this.masterSheetSyncButton.Location = new System.Drawing.Point(40, 12);
-            this.masterSheetSyncButton.Name = "masterSheetSyncButton";
-            this.masterSheetSyncButton.Size = new System.Drawing.Size(251, 38);
-            this.masterSheetSyncButton.TabIndex = 0;
-            this.masterSheetSyncButton.Text = "Sync Master Sheet";
-            this.masterSheetSyncButton.UseVisualStyleBackColor = true;
-            this.masterSheetSyncButton.Click += new System.EventHandler(this.masterSheetSyncButton_Click);
+            this.updateMasterSheetButton.Location = new System.Drawing.Point(47, 348);
+            this.updateMasterSheetButton.Name = "updateMasterSheetButton";
+            this.updateMasterSheetButton.Size = new System.Drawing.Size(278, 38);
+            this.updateMasterSheetButton.TabIndex = 0;
+            this.updateMasterSheetButton.Text = "Update Fields and Rotation";
+            this.updateMasterSheetButton.UseVisualStyleBackColor = true;
+            this.updateMasterSheetButton.Click += new System.EventHandler(this.updateMasterSheetButton_Click);
             // 
-            // createProductFormButton
+            // updateProductsButton
             // 
-            this.createProductFormButton.Location = new System.Drawing.Point(367, 118);
-            this.createProductFormButton.Name = "createProductFormButton";
-            this.createProductFormButton.Size = new System.Drawing.Size(251, 38);
-            this.createProductFormButton.TabIndex = 0;
-            this.createProductFormButton.Text = "New Product";
-            this.createProductFormButton.UseVisualStyleBackColor = true;
-            this.createProductFormButton.Click += new System.EventHandler(this.createProductFormButton_Click);
+            this.updateProductsButton.Location = new System.Drawing.Point(46, 138);
+            this.updateProductsButton.Name = "updateProductsButton";
+            this.updateProductsButton.Size = new System.Drawing.Size(278, 38);
+            this.updateProductsButton.TabIndex = 0;
+            this.updateProductsButton.Text = "Update Products";
+            this.updateProductsButton.UseVisualStyleBackColor = true;
+            this.updateProductsButton.Click += new System.EventHandler(this.updateProductsButton_Click);
             // 
             // createSoilSampleFormButton
             // 
-            this.createSoilSampleFormButton.Location = new System.Drawing.Point(40, 65);
+            this.createSoilSampleFormButton.Location = new System.Drawing.Point(46, 295);
             this.createSoilSampleFormButton.Name = "createSoilSampleFormButton";
-            this.createSoilSampleFormButton.Size = new System.Drawing.Size(251, 38);
+            this.createSoilSampleFormButton.Size = new System.Drawing.Size(277, 38);
             this.createSoilSampleFormButton.TabIndex = 0;
             this.createSoilSampleFormButton.Text = "Import Soil Samples";
             this.createSoilSampleFormButton.UseVisualStyleBackColor = true;
             this.createSoilSampleFormButton.Click += new System.EventHandler(this.createSoilSampleFormButton_Click);
             // 
-            // createAnalysesFormButton
+            // updateAnalysesButton
             // 
-            this.createAnalysesFormButton.Location = new System.Drawing.Point(367, 12);
-            this.createAnalysesFormButton.Name = "createAnalysesFormButton";
-            this.createAnalysesFormButton.Size = new System.Drawing.Size(251, 38);
-            this.createAnalysesFormButton.TabIndex = 0;
-            this.createAnalysesFormButton.Text = "New Analysis";
-            this.createAnalysesFormButton.UseVisualStyleBackColor = true;
-            this.createAnalysesFormButton.Click += new System.EventHandler(this.createAnalysesFormButton_Click);
+            this.updateAnalysesButton.Location = new System.Drawing.Point(46, 194);
+            this.updateAnalysesButton.Name = "updateAnalysesButton";
+            this.updateAnalysesButton.Size = new System.Drawing.Size(278, 38);
+            this.updateAnalysesButton.TabIndex = 0;
+            this.updateAnalysesButton.Text = "Update Analyses";
+            this.updateAnalysesButton.UseVisualStyleBackColor = true;
+            this.updateAnalysesButton.Click += new System.EventHandler(this.createAnalysesFormButton_Click);
             // 
-            // createOperationsFormButton
+            // importIntentionsButton
             // 
-            this.createOperationsFormButton.Location = new System.Drawing.Point(40, 118);
-            this.createOperationsFormButton.Name = "createOperationsFormButton";
-            this.createOperationsFormButton.Size = new System.Drawing.Size(251, 38);
-            this.createOperationsFormButton.TabIndex = 0;
-            this.createOperationsFormButton.Text = "Import Intentions";
-            this.createOperationsFormButton.UseVisualStyleBackColor = true;
+            this.importIntentionsButton.Location = new System.Drawing.Point(46, 243);
+            this.importIntentionsButton.Name = "importIntentionsButton";
+            this.importIntentionsButton.Size = new System.Drawing.Size(277, 38);
+            this.importIntentionsButton.TabIndex = 0;
+            this.importIntentionsButton.Text = "Import Intentions";
+            this.importIntentionsButton.UseVisualStyleBackColor = true;
+            this.importIntentionsButton.Click += new System.EventHandler(this.importIntentionsButton_Click);
             // 
-            // createNutrientFormButton
+            // updateNutrientsButton
             // 
-            this.createNutrientFormButton.Location = new System.Drawing.Point(367, 65);
-            this.createNutrientFormButton.Name = "createNutrientFormButton";
-            this.createNutrientFormButton.Size = new System.Drawing.Size(251, 38);
-            this.createNutrientFormButton.TabIndex = 1;
-            this.createNutrientFormButton.Text = "New Nutrient";
-            this.createNutrientFormButton.UseVisualStyleBackColor = true;
-            this.createNutrientFormButton.Click += new System.EventHandler(this.createNutrientFormButton_Click);
+            this.updateNutrientsButton.Location = new System.Drawing.Point(46, 82);
+            this.updateNutrientsButton.Name = "updateNutrientsButton";
+            this.updateNutrientsButton.Size = new System.Drawing.Size(278, 38);
+            this.updateNutrientsButton.TabIndex = 1;
+            this.updateNutrientsButton.Text = "Update Nutrients";
+            this.updateNutrientsButton.UseVisualStyleBackColor = true;
+            this.updateNutrientsButton.Click += new System.EventHandler(this.updateNutrientsButton_Click);
+            // 
+            // updateUnitsButton
+            // 
+            this.updateUnitsButton.Location = new System.Drawing.Point(47, 28);
+            this.updateUnitsButton.Name = "updateUnitsButton";
+            this.updateUnitsButton.Size = new System.Drawing.Size(278, 38);
+            this.updateUnitsButton.TabIndex = 1;
+            this.updateUnitsButton.Text = "Update Units";
+            this.updateUnitsButton.UseVisualStyleBackColor = true;
+            this.updateUnitsButton.Click += new System.EventHandler(this.updateUnitsButton_Click);
             // 
             // CreateMenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 57F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(644, 180);
-            this.Controls.Add(this.createNutrientFormButton);
-            this.Controls.Add(this.createOperationsFormButton);
-            this.Controls.Add(this.createAnalysesFormButton);
+            this.ClientSize = new System.Drawing.Size(384, 410);
+            this.Controls.Add(this.updateUnitsButton);
+            this.Controls.Add(this.updateNutrientsButton);
+            this.Controls.Add(this.importIntentionsButton);
+            this.Controls.Add(this.updateAnalysesButton);
             this.Controls.Add(this.createSoilSampleFormButton);
-            this.Controls.Add(this.createProductFormButton);
-            this.Controls.Add(this.masterSheetSyncButton);
+            this.Controls.Add(this.updateProductsButton);
+            this.Controls.Add(this.updateMasterSheetButton);
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
@@ -120,11 +133,12 @@ namespace SMISoilUI
 
         #endregion
 
-        private System.Windows.Forms.Button masterSheetSyncButton;
-        private System.Windows.Forms.Button createProductFormButton;
+        private System.Windows.Forms.Button updateMasterSheetButton;
+        private System.Windows.Forms.Button updateProductsButton;
         private System.Windows.Forms.Button createSoilSampleFormButton;
-        private System.Windows.Forms.Button createAnalysesFormButton;
-        private System.Windows.Forms.Button createOperationsFormButton;
-        private System.Windows.Forms.Button createNutrientFormButton;
+        private System.Windows.Forms.Button updateAnalysesButton;
+        private System.Windows.Forms.Button importIntentionsButton;
+        private System.Windows.Forms.Button updateNutrientsButton;
+        private System.Windows.Forms.Button updateUnitsButton;
     }
 }

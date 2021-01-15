@@ -26,5 +26,11 @@ namespace SMISoilUI
             Form getSoilDataForm = new GetSoilDataForm();
             getSoilDataForm.Show();
         }
+
+        private void getSoilSampleDataButton_Click(object sender, EventArgs e)
+        {
+            Form getSoilSampleForm = new CreateSoilSampleIntentionsForm();
+            getSoilSampleForm.ShowDialog();
+        }
     }
 }

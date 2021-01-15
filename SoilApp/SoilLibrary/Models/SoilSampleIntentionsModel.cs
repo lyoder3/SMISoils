@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace SoilLibrary.Models
 {
-    public class FilteredFieldNutrientModel
+    public class SoilSampleIntentionsModel
     {
+        public int Id { get; set; }
         public string Farm { get; set; }
         public string Field { get; set; }
-        public string Nutrient { get; set; }
-        public decimal Amount { get; set; }
-        public int Goal { get; set; }
-        public int LastSampled { get; set; }
+        public int RotationYear { get; set; }
         public string Crop { get; set; }
     }
 }

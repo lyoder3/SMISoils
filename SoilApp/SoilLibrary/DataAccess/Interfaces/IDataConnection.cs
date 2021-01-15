@@ -26,6 +26,7 @@ namespace SoilLibrary.DataAccess
         IList<int> GetRotationYears();
 
         IList<FilteredFieldNutrientModel> GetFieldsNutrients_Filter(string farmName, int rotationYear, int nutrientId, int productId);
+        IList<SoilSampleIntentionsModel> GetSoilSampleIntentions(int lastSampled, int rotationYear, int productId);
 
     }
 }

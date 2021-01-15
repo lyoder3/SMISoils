@@ -14,8 +14,18 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    INSERT INTO dbo.Nutrients (ItemName, UnitId)
-	VALUES (@QuantityName, @UnitId);
+	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+	BEGIN TRANSACTION;
+	UPDATE dbo.Products 
+	SET ItemName = @QuantityName, @UnitId = @UnitId
+	WHERE 
+		dbo.Products.id = @id;
+	IF @@ROWCOUNT = 0
+	BEGIN
+		INSERT INTO dbo.Products (ItemName, UnitId) 
+		VALUES (@QuantityName, @UnitId);
 
-	SELECT @id = SCOPE_IDENTITY();
+		SELECT @id = SCOPE_IDENTITY();
+	END
+	COMMIT TRANSACTION;
 END

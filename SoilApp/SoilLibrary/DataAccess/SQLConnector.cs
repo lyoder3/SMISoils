@@ -18,8 +18,7 @@ namespace SoilLibrary.DataAccess
             {
                 var p = new DynamicParameters();
                 p.Add("@ProductId", model.ProductId);
-                p.Add("@AnalysisName", model.AnalysisName);
-                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                p.Add("@id", model.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
 
                 try
                 {
@@ -142,7 +141,7 @@ namespace SoilLibrary.DataAccess
             {
                 var p = new DynamicParameters();
                 p.Add("@Unit", model.Unit);
-                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                p.Add("@id", model.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
 
                 try
                 {
@@ -299,6 +298,20 @@ namespace SoilLibrary.DataAccess
 
                 return connection.Query<FilteredFieldNutrientModel>
                     ("spFieldsNutrients_Filter", p, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public IList<SoilSampleIntentionsModel> GetSoilSampleIntentions(int lastSampled, int rotationYear, int productId)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@RotationYear", rotationYear);
+                p.Add("@LastSampledYear", lastSampled);
+                p.Add("@CropId", productId);
+
+                return connection.Query<SoilSampleIntentionsModel>
+                    ("spRotationsSoilSamples_GenerateUpcomingIntentions", p, commandType: CommandType.StoredProcedure).ToList();
             }
         }
     }
