@@ -43,18 +43,19 @@ namespace SMISoilUI
             if (folderBrowserBox.ShowDialog() == DialogResult.OK)
             {
                 SelectedFilePath = folderBrowserBox.SelectedPath;
+
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+                parameters.Add("RotationYear", yearValue.Text);
+                parameters.Add("LastSampled", lastSampledYearValue.Text);
+                parameters.Add("FolderPath", SelectedFilePath);
+                parameters.Add("Crop", cropDropDown.SelectedItem);
+
+
+                ExcelWriter.WriteSoilSampleIntentions(parameters);
+                MessageBox.Show($"File written to:\n {SelectedFilePath}");
             }
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-
-            parameters.Add("RotationYear", yearValue.Text);
-            parameters.Add("LastSampled", lastSampledYearValue.Text);
-            parameters.Add("FolderPath", SelectedFilePath);
-            parameters.Add("Crop", cropDropDown.SelectedItem);
-
-
-            ExcelWriter.WriteSoilSampleIntentions(parameters);
-            MessageBox.Show($"File written to:\n {SelectedFilePath}");
         }
     }
 }

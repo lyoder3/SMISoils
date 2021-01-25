@@ -2,6 +2,7 @@
     [id]    INT          IDENTITY (1, 1) NOT NULL,
     [Farm]  VARCHAR (25) NOT NULL,
     [Field] NVARCHAR(8)     NOT NULL,
+    [Acreage] DECIMAL(8, 3) NOT NULL, 
     CONSTRAINT [PK_Fields] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 

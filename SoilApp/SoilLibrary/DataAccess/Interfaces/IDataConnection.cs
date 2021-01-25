@@ -27,6 +27,10 @@ namespace SoilLibrary.DataAccess
 
         IList<FilteredFieldNutrientModel> GetFieldsNutrients_Filter(string farmName, int rotationYear, int nutrientId, int productId);
         IList<SoilSampleIntentionsModel> GetSoilSampleIntentions(int lastSampled, int rotationYear, int productId);
+        void CreateSoilSampleNutrient(SoilSampleNutrientModel model);
+        void CreateFieldNutrient(SoilSampleNutrientModel model, int fieldId, int lastSampleYear);
+
+        SoilSampleNutrientModel GetFieldNutrient_ByIds(int fieldId, int nutrientId);
 
     }
 }

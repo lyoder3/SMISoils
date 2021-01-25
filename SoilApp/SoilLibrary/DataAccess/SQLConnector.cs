@@ -33,12 +33,16 @@ namespace SoilLibrary.DataAccess
 
                 foreach (AnalysisNutrientModel an in model.Nutrients)
                 {
-                    p = new DynamicParameters();
-                    p.Add("@AnalysisId", model.Id);
-                    p.Add("@NutrientId", an.NutrientId);
-                    p.Add("@Amount", an.Amount);
+                    if (an.Amount != decimal.Zero)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@AnalysisId", model.Id);
+                        p.Add("@NutrientId", an.NutrientId);
+                        p.Add("@Amount", an.Amount);
 
-                    connection.Execute("dbo.spAnalysisNutrients_Insert", p, commandType: CommandType.StoredProcedure);
+                        connection.Execute("dbo.spAnalysisNutrients_Insert", p, commandType: CommandType.StoredProcedure);
+                    }
+                    
                 }
             }
 
@@ -77,6 +81,7 @@ namespace SoilLibrary.DataAccess
                 var p = new DynamicParameters();
                 p.Add("@FarmName", model.Farm);
                 p.Add("@Field", model.Field);
+                p.Add("@Acreage", model.Acreage);
                 p.Add("@id", model.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
 
                 connection.Execute("dbo.spFields_Upsert", p, commandType: CommandType.StoredProcedure);
@@ -108,33 +113,38 @@ namespace SoilLibrary.DataAccess
                 connection.Execute("dbo.spSoilSamples_Insert", p, commandType: CommandType.StoredProcedure);
 
                 model.Id = p.Get<int>("@id");
+            }
+        }
+        public void CreateSoilSampleNutrient(SoilSampleNutrientModel model)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@SoilSampleId", model.SoilSampleId);
+                p.Add("@NutrientId", model.NutrientId);
+                p.Add("@Amount", model.Amount);
+                p.Add("@Goal", model.Goal);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                foreach (SoilSampleNutrientModel ssn in model.Nutrients)
-                {
-                    p = new DynamicParameters();
-                    p.Add("@SoilSampleId", model.Id);
-                    p.Add("@NutrientId", ssn.NutrientId);
-                    p.Add("@Amount", ssn.Amount);
-                    p.Add("@Goal", ssn.Goal);
-                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-
-                    connection.Execute("dbo.spSoilSamplesNutrients_Insert", p, commandType: CommandType.StoredProcedure);
-
-                    p = new DynamicParameters();
-                    p.Add("@FieldId", model.FieldId);
-                    p.Add("@NutrientId", ssn.NutrientId);
-                    p.Add("@Amount", ssn.Amount);
-                    p.Add("@Goal", ssn.Goal);
-                    p.Add("@SampleYear", model.SampleYear);
-                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-
-                    connection.Execute("dbo.spFieldsNutrients_Upsert", p, commandType: CommandType.StoredProcedure);
-
-                }
-
+                connection.Execute("dbo.spSoilSamplesNutrients_Insert", p, commandType: CommandType.StoredProcedure);
             }
         }
 
+        public void CreateFieldNutrient(SoilSampleNutrientModel model, int fieldId, int lastSampledYear)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FieldId", fieldId);
+                p.Add("@NutrientId", model.NutrientId);
+                p.Add("@Amount", model.Amount);
+                p.Add("@Goal", model.Goal);
+                p.Add("@SampleYear", lastSampledYear);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spFieldsNutrients_Upsert", p, commandType: CommandType.StoredProcedure);
+            }
+        }
         public void CreateUnit(UnitModel model)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
@@ -312,6 +322,19 @@ namespace SoilLibrary.DataAccess
 
                 return connection.Query<SoilSampleIntentionsModel>
                     ("spRotationsSoilSamples_GenerateUpcomingIntentions", p, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public SoilSampleNutrientModel GetFieldNutrient_ByIds(int fieldId, int nutrientId)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FieldId", fieldId);
+                p.Add("@NutrientId", nutrientId);
+
+                return connection.Query<SoilSampleNutrientModel>("dbo.spFieldsNutrients_GetByIds", p, commandType: CommandType.StoredProcedure)
+                    .ToList().First();
             }
         }
     }

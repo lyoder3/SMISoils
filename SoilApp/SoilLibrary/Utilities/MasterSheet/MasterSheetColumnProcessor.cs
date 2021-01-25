@@ -13,11 +13,13 @@ namespace SoilLibrary.Utilities
         private static readonly Regex FieldNameRegex = new Regex("^Field");
         private static readonly Regex RotationRegex = new Regex("(?<RotationYear>\\d{4}) SPRING");
         private static readonly Regex IdRegex = new Regex("^Id");
+        private static readonly Regex AcreageRegex = new Regex("^CROPPING ACRES$");
 
         private IList<object> Headers { get; set; }
         public int FieldNameIndex { get; set; }
         public int FarmNameIndex { get; set; }
         public int IdIndex { get; set; }
+        public int AcreageIndex { get; set; }
         public IDictionary<int, int> RotationColumns { get; set; } = new Dictionary<int, int>();
 
         public MasterSheetColumnProcessor(IList<object> headers)
@@ -50,6 +52,11 @@ namespace SoilLibrary.Utilities
                     int rotationYear = Convert.ToInt32(RotationRegex.Match(header)
                         .Groups["RotationYear"].Value);
                     RotationColumns.Add(rotationYear, columnIndex);
+                }
+                if (AcreageRegex.IsMatch(header))
+                {
+                    int columnIndex = Headers.IndexOf(header);
+                    AcreageIndex = columnIndex;
                 }
                 
             }

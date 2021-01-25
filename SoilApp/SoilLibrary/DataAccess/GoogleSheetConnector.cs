@@ -9,14 +9,14 @@ namespace SoilLibrary.Utilities
     public class GoogleSheetConnector : IGoogleSheetConnector
     {
 
-        public IList<IList<Object>> GetValues(string spreadsheetId, string sheetRange)
+        public IList<IList<object>> GetValues(string spreadsheetId, string sheetRange)
         {
             SpreadsheetsResource.ValuesResource.GetRequest request =
             GlobalConfig.SheetsService.Spreadsheets.Values.Get(spreadsheetId, sheetRange);
 
             ValueRange response = request.Execute();
 
-            IList<IList<Object>> values = response.Values;
+            IList<IList<object>> values = response.Values;
 
             if (values != null && values.Count > 0)
             {

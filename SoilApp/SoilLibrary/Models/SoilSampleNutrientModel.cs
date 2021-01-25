@@ -14,16 +14,14 @@ namespace SoilLibrary.Models
         public int SoilSampleId { get; set; }
         public decimal? Amount { get; set; }
 
+        public decimal? Recommendation { get; set; }
+
         public int? Goal { get; set; }
         /// <summary>
         /// Constructor for creating blank objects of the class
         /// </summary>
         public SoilSampleNutrientModel()
         {
-        }
-        public int Recommendation()
-        {
-            return Convert.ToInt32(Goal - Amount * PPMConversionFactor);
         }
     }
 }

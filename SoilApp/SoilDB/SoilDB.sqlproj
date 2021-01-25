@@ -61,6 +61,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SoilDB.refactorlog" />
@@ -97,6 +98,8 @@
     <Build Include="dbo\Stored Procedures\spRotationsSoilSamples_GenerateUpcomingIntentions.sql" />
     <Build Include="dbo\Stored Procedures\spAnalyses_Insert.sql" />
     <Build Include="dbo\Stored Procedures\spAnalysisNutrients_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spFieldsNutrients_GetByIds.sql" />
+    <Build Include="dbo\Views\RotationWithCrops.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SoilDB.publish.xml" />

@@ -48,17 +48,19 @@ namespace SoilLibrary.Utilities
 
             using (var package = new ExcelPackage(newFile))
             {
+                var newSheet = package.Workbook.Worksheets.Add("Results");
+
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    newSheet.Cells[1, i + 1].Value = headers[i];
+                }
+
                 IList<FilteredFieldNutrientModel> models = GlobalConfig.Connection.GetFieldsNutrients_Filter(
                         farmName: farmName,
                         rotationYear: rotationYear,
                         nutrientId: nutrient.Id,
                         productId: crop.Id
                     );
-                var newSheet = package.Workbook.Worksheets.Add("Results");
-                for (int i = 0; i < headers.Length; i++)
-                {
-                    newSheet.Cells[1, i+1].Value = headers[i];
-                }
                 
                 var newRange = newSheet.Cells["A2"].LoadFromCollection(models);
 
@@ -70,10 +72,10 @@ namespace SoilLibrary.Utilities
 
         public static void WriteSoilSampleIntentions(Dictionary<string, object> parameters)
         {
-            //TODO - Finish writing these files
+            
             StringBuilder stringBuilder = new StringBuilder();
 
-            string folderPath = (string) parameters["FolderPath"];
+            string folderPath = (string)parameters["FolderPath"];
 
             int rotationYear = Convert.ToInt32(parameters["RotationYear"]);
             ProductModel crop = (ProductModel)parameters["Crop"];

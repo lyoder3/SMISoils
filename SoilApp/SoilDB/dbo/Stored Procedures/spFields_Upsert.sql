@@ -3,6 +3,7 @@ CREATE PROCEDURE [dbo].[spFields_Upsert]
 	-- Add the parameters for the stored procedure here
 	@FarmName varchar(25),
 	@Field char(3),
+	@Acreage decimal(8,3),
 	@id int=0 output
 AS
 BEGIN
@@ -12,10 +13,10 @@ BEGIN
 	
 	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 	BEGIN TRANSACTION;
-	UPDATE dbo.Fields SET Farm = @FarmName, Field=@Field WHERE dbo.Fields.id = @id;
+	UPDATE dbo.Fields SET Farm = @FarmName, Field=@Field, Acreage = @Acreage WHERE dbo.Fields.id = @id;
 	IF @@ROWCOUNT = 0
 	BEGIN
-		INSERT INTO dbo.Fields (Farm, Field) VALUES (@FarmName, @Field);
+		INSERT INTO dbo.Fields (Farm, Field, Acreage) VALUES (@FarmName, @Field, @Acreage);
 		SELECT @id = SCOPE_IDENTITY();
 	END
 	COMMIT TRANSACTION;

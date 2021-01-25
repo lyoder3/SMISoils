@@ -16,6 +16,7 @@ namespace SoilLibrary.Utilities
         public int FarmNameIndex { get; set; }
         public int IdIndex { get; set; }
         private IDictionary<int, int> RotationColumns { get; set; }
+        public int AcreageIndex { get; private set; }
 
         public MasterSheetProcessor(IList<IList<object>> rows)
         {
@@ -33,6 +34,7 @@ namespace SoilLibrary.Utilities
             FarmNameIndex = ColumnProcessor.FarmNameIndex;
             IdIndex = ColumnProcessor.IdIndex;
             RotationColumns = ColumnProcessor.RotationColumns;
+            AcreageIndex = ColumnProcessor.AcreageIndex;
 
             foreach (var row in Rows)
             {
@@ -46,8 +48,17 @@ namespace SoilLibrary.Utilities
             {
                 Field = (string)row[FieldNameIndex],
                 Farm = (string)row[FarmNameIndex],
-                Id = Convert.ToInt32(row[IdIndex])
+                Id = Convert.ToInt32(row[IdIndex]),
+                Acreage = 0.0M
             };
+
+            bool validDecimal = decimal.TryParse((string)row[AcreageIndex], out decimal acreage);
+
+            if (validDecimal && acreage > 0)
+            {
+                newField.Acreage = acreage;
+            }
+
 
             foreach (var rotationColumn in RotationColumns)
             {

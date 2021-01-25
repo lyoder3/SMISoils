@@ -7,7 +7,3 @@
 );
 
 GO
-
-CREATE UNIQUE NONCLUSTERED INDEX [UK_AnalysisNameProductId]
-    ON [dbo].[Analyses]([ProductId] ASC, [CreatedTimestamp] ASC);
-GO

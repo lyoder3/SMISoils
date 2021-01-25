@@ -59,7 +59,6 @@ namespace SoilLibrary.Utilities
 
         public void ProcessSamples()
         {
-            // TODO - Used stored procedure to upsert FieldsNutrients after writing all nutrients
             ReadValues();
             PopHeaders();
 
@@ -86,25 +85,25 @@ namespace SoilLibrary.Utilities
 
             foreach (var key in NutrientMappings.Keys)
             {
-                SoilSampleNutrientModel newNutrientRecord = CreateSampleNutrientRecord(sampleRow, newSampleModel, key);
+                SoilSampleNutrientModel newNutrientRecord = CreateSampleNutrientRecord(sampleRow, key);
                 newSampleModel.Nutrients.Add(newNutrientRecord);
             }
             GlobalConfig.Connection.CreateSoilSample(newSampleModel);
             Samples.Add(newSampleModel);
         }
 
-        private SoilSampleNutrientModel CreateSampleNutrientRecord(List<string> sample, SoilSampleModel newSampleModel, string key)
+        private SoilSampleNutrientModel CreateSampleNutrientRecord(List<string> sample, string key)
         {
             int index = NutrientMappings[key];
             SoilSampleNutrientModel newNutrientRecord = new SoilSampleNutrientModel();
 
             newNutrientRecord.Amount = null;
-            newNutrientRecord.Goal = null;
+            newNutrientRecord.Recommendation = null;
 
             newNutrientRecord.NutrientId = Convert.ToInt32(key);
 
             NutrientModel nutrient = GlobalConfig.Connection.GetNutrient_ById(newNutrientRecord.NutrientId);
-            
+
 
             if (sample[index] != "NULL")
             {
@@ -118,40 +117,35 @@ namespace SoilLibrary.Utilities
                     newNutrientRecord.Amount *= SoilSampleNutrientModel.PPMConversionFactor;
                 }
             }
-            
+
             Regex recommendationRegex = new Regex($"^{key}\\sRec\\s\\d");
             var recommendationColumns = RecommendationMappings
                 .Where(pair => recommendationRegex.IsMatch(pair.Key))
                 .Select(pair => pair.Value);
 
-            if (recommendationColumns.Count() > 0)
+            if (HasRecommendations(recommendationColumns))
             {
-                bool allNull = recommendationColumns.All(i => sample[i] == "NULL");
-
-
                 decimal totalRec = recommendationColumns
                                             .Where(i => decimal.TryParse(sample[i], out decimal recommendation))
                                             .Select(i => decimal.Parse(sample[i]))
                                             .Sum();
-
-                if (totalRec >= 0 && allNull == false)
+                if (NotAllNull(sample, recommendationColumns))
                 {
-                    if (newNutrientRecord.Amount == null)
-                    {
-                        // if the nutrient level is null, make the goal just the recommendation
-                        newNutrientRecord.Goal = Convert.ToInt32(Math.Round(totalRec, 0));
-                    }
-                    // Otherwise, the goal is the current level plus the total recommendation
-                    else
-                    {
-                        newNutrientRecord.Goal = Convert.ToInt32(
-                        Math.Round(
-                            (double)(totalRec + newNutrientRecord.Amount), 0));
-                    }
+                    newNutrientRecord.Recommendation = totalRec;
                 }
             }
 
             return newNutrientRecord;
+        }
+
+        private static bool NotAllNull(List<string> sample, IEnumerable<int> recommendationColumns)
+        {
+            return recommendationColumns.All(i => sample[i] == "NULL") == false;
+        }
+
+        private static bool HasRecommendations(IEnumerable<int> recommendationColumns)
+        {
+            return recommendationColumns.Count() > 0;
         }
     }
 }

@@ -25,6 +25,8 @@ namespace SoilLibrary.Models
         /// </summary>
         public List<RotationModel> Rotations { get; set; } = new List<RotationModel>();
 
+        public decimal Acreage { get; set; }
+
         public FieldModel()
         {
         }
