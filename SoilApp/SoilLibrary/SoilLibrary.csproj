@@ -155,7 +155,7 @@
     <Compile Include="Utilities\MasterSheet\MasterSheetProcessor.cs" />
     <Compile Include="Utilities\MasterSheet\NutrientsSheetProcessor.cs" />
     <Compile Include="Utilities\MasterSheet\AnalysesSheetColumnProcessor.cs" />
-    <Compile Include="Utilities\SoilSampleData.cs" />
+    <Compile Include="Utilities\SoilSamples\SoilSampleData.cs" />
     <Compile Include="Utilities\SoilSamples\ISoilSampleProcessor.cs" />
     <Compile Include="Utilities\SoilSamples\SoilSampleColumnProcessor.cs" />
     <Compile Include="Utilities\SoilSamples\SoilSampleProcessor.cs" />

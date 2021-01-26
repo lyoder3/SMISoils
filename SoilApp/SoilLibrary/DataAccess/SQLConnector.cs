@@ -10,7 +10,7 @@ namespace SoilLibrary.DataAccess
 {
     public class SQLConnector : IDataConnection
     {
-        private const string db = "SoilTest";
+        private const string db = "Soil";
 
         public void CreateAnalysis(AnalysisModel model)
         {
@@ -333,8 +333,16 @@ namespace SoilLibrary.DataAccess
                 p.Add("@FieldId", fieldId);
                 p.Add("@NutrientId", nutrientId);
 
-                return connection.Query<SoilSampleNutrientModel>("dbo.spFieldsNutrients_GetByIds", p, commandType: CommandType.StoredProcedure)
+                try
+                {
+                    return connection.Query<SoilSampleNutrientModel>("dbo.spFieldsNutrients_GetByIds", p, commandType: CommandType.StoredProcedure)
                     .ToList().First();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return new SoilSampleNutrientModel();
+                }
+       
             }
         }
     }

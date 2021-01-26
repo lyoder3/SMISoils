@@ -88,7 +88,9 @@ namespace SoilLibrary.Utilities
                 SoilSampleNutrientModel newNutrientRecord = CreateSampleNutrientRecord(sampleRow, key);
                 newSampleModel.Nutrients.Add(newNutrientRecord);
             }
-            GlobalConfig.Connection.CreateSoilSample(newSampleModel);
+            SoilSampleData sampleData = new SoilSampleData();
+            sampleData.Sample = newSampleModel;
+            sampleData.WriteSoilSample();
             Samples.Add(newSampleModel);
         }
 

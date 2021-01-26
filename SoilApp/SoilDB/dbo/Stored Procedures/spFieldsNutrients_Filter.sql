@@ -11,6 +11,8 @@ SELECT lastCrop.id,
 	lastCrop.Acreage,
 	n.ItemName as Nutrient, 
 	fn.Amount,
+	fn.Goal,
+	fn.LastSampledYear as LastSampled,
 	lastCrop.LastCrop, 
 	p.ItemName as UpcomingCrop
 FROM dbo.FieldsNutrients fn

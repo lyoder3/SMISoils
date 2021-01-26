@@ -36,13 +36,16 @@ namespace SoilLibrary.Utilities
             FileInfo newFile = FileOutputUtil.GetFileInfo(directory, outputFileName, deleteIfExists: true);
 
             string[] headers = new string[]
-            { 
+            {
+                "FieldId",
                 "Farm",
                 "Field",
+                "Acreage",
                 "Nutrient",
                 "Amount (lbm/ac)",
                 "Goal (lbm/ac)",
                 "Last Sampled",
+                $"{rotationYear - 1} Crop",
                 $"{rotationYear} Crop"
             };
 

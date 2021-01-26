@@ -20,21 +20,20 @@ namespace SoilLibrary.Utilities
 
             foreach (SoilSampleNutrientModel ssn in Sample.Nutrients)
             {
-                var currentModel = Connection.GetFieldNutrient_ByIds(Sample.FieldId, ssn.NutrientId);
-
-                if (currentModel != null)
+                ssn.Goal = null;
+                if (ssn.Amount == null)
                 {
-                    if (ssn.Amount == null)
-                    {
-                        ssn.SoilSampleId = Sample.Id;
-                        ssn.Amount = currentModel.Amount;
-                        Connection.CreateSoilSampleNutrient(ssn);
-                        Connection.CreateFieldNutrient(ssn, Sample.FieldId, Sample.Id);
-                    }
+                    continue;
                 }
                 else
                 {
-                    Connection.CreateFieldNutrient(ssn, Sample.FieldId, Sample.Id);
+                    if (ssn.Recommendation != null)
+                    {
+                        ssn.Goal = Convert.ToInt32(ssn.Recommendation + ssn.Amount);
+                    }
+                    ssn.SoilSampleId = Sample.Id;
+                    Connection.CreateSoilSampleNutrient(ssn);
+                    Connection.CreateFieldNutrient(ssn, Sample.FieldId, Sample.SampleYear);
                 }
             }
         }

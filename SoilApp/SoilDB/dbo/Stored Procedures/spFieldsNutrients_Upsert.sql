@@ -12,7 +12,7 @@ AS
 	SET NOCOUNT ON;
 	
 	SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-	BEGIN TRANSACTION;
+	BEGIN TRANSACTION
 	UPDATE dbo.FieldsNutrients 
 	SET Amount = @Amount, Goal = @Goal, LastSampledYear = @SampleYear
 	WHERE 
