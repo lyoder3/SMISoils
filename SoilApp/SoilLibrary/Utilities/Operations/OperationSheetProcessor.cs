@@ -13,11 +13,11 @@ namespace SoilLibrary.Utilities
         private readonly int AnalysisIndex = 1;
         private readonly int AmountIndex = 2;
         private readonly int TimestampIndex = 3;
-
         public OperationSheetProcessor(IList<IList<object>> rows)
         {
             Rows = rows;
             PopHeaders();
+            UpdateValues.Add(Headers);
         }
         public override void ProcessRow(IList<object> row)
         {
@@ -29,12 +29,15 @@ namespace SoilLibrary.Utilities
 
             GlobalConfig.Connection.CreateOperation(operation);
 
-
+            UpdateValues.Add(new string[] { "", "", "", "" });
         }
 
         public override void ProcessRows()
         {
-            throw new NotImplementedException();
+            foreach (var row in Rows)
+            {
+                ProcessRow(row);
+            }
         }
     }
 }

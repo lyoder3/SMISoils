@@ -102,7 +102,11 @@ namespace SoilLibrary.DataAccess
                 var p = new DynamicParameters();
                 p.Add("@FieldId", model.FieldId);
                 p.Add("@AnalysisId", model.AnalysisId);
-                p.Add("@")
+                p.Add("@AmountApplied", model.AppliedAmount);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spOperations_Insert", p, commandType: CommandType.StoredProcedure);
+                model.Id = p.Get<int>("@id");
             }
         }
 
