@@ -24,5 +24,10 @@ namespace SoilLibrary.Models
         /// Amount of product applied
         /// </summary>
         public decimal AppliedAmount { get; set; }
+        /// <summary>
+        /// Change in nutrient level: AppliedAmount * AnalsyisLevel
+        /// </summary>
+        public SoilSampleNutrientModel Nutrients { get; set; }
+
     }
 }

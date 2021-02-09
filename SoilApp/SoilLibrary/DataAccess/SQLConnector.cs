@@ -97,7 +97,13 @@ namespace SoilLibrary.DataAccess
 
         public void CreateOperation(OperationModel model)
         {
-            throw new System.NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FieldId", model.FieldId);
+                p.Add("@AnalysisId", model.AnalysisId);
+                p.Add("@")
+            }
         }
 
 
