@@ -156,7 +156,7 @@
     <Compile Include="Utilities\MasterSheet\MasterSheetProcessor.cs" />
     <Compile Include="Utilities\MasterSheet\NutrientsSheetProcessor.cs" />
     <Compile Include="Utilities\MasterSheet\AnalysesSheetColumnProcessor.cs" />
-    <Compile Include="Utilities\Operations\OperationSheet.cs" />
+    <Compile Include="DataAccess\OperationSheet.cs" />
     <Compile Include="Utilities\Operations\OperationSheetProcessor.cs" />
     <Compile Include="Utilities\SoilSamples\SoilSampleData.cs" />
     <Compile Include="Utilities\SoilSamples\ISoilSampleProcessor.cs" />

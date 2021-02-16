@@ -10,7 +10,7 @@ namespace SoilLibrary.DataAccess
 {
     public class SQLConnector : IDataConnection
     {
-        private const string db = "Soil";
+        private const string db = "SoilTest";
 
         public void CreateAnalysis(AnalysisModel model)
         {
@@ -103,6 +103,7 @@ namespace SoilLibrary.DataAccess
                 p.Add("@FieldId", model.FieldId);
                 p.Add("@AnalysisId", model.AnalysisId);
                 p.Add("@AmountApplied", model.AppliedAmount);
+                p.Add("@Timestamp", model.Timestamp);
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spOperations_Insert", p, commandType: CommandType.StoredProcedure);

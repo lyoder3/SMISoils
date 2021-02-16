@@ -92,7 +92,16 @@ namespace SMISoilUI
 
         private void importIntentionsButton_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                GlobalConfig.OperationSheet.Update();
+            }
+            catch (GoogleSheetUpdateException ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
+            MessageBox.Show("Operation update successful!");
         }
     }
 }

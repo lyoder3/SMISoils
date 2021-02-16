@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoilLibrary.Utilities;
 
-namespace SoilLibrary.Utilities
+namespace SoilLibrary.DataAccess
 {
     public class OperationSheet
     {
@@ -21,7 +22,7 @@ namespace SoilLibrary.Utilities
             processor = new OperationSheetProcessor(rows);
         }
 
-        public void InsertOperations()
+        public void Update()
         {
             processor.ProcessRows();
 

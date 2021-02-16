@@ -17,6 +17,7 @@ namespace SoilLibrary
         private static UserCredential GoogleCreds { get; set; }
         public static SheetsService SheetsService { get; private set; }
         public static IMasterSheet MasterSheet { get; private set; }
+        public static OperationSheet OperationSheet { get; private set; }
 
         static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
 
@@ -33,6 +34,7 @@ namespace SoilLibrary
             });
 
             MasterSheet = new MasterSheet();
+            OperationSheet = new OperationSheet();
             
         }
         public static string CnnString(string name)
