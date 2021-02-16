@@ -3,7 +3,7 @@
 	@NutrientId int,
 	@Amount decimal(10,5) = NULL,
 	@Goal int = NULL,
-	@SampleYear int,
+	@SampleYear int = NULL,
 	@id int=0 output
 AS
 	BEGIN
@@ -16,7 +16,7 @@ AS
 	UPDATE dbo.FieldsNutrients 
 	SET Amount = @Amount, Goal = @Goal, LastSampledYear = @SampleYear
 	WHERE 
-		dbo.FieldsNutrients.FieldId = @FieldId AND dbo.FieldsNutrients.NutrientId=@NutrientId;
+		(dbo.FieldsNutrients.FieldId = @FieldId AND dbo.FieldsNutrients.NutrientId=@NutrientId);
 	IF @@ROWCOUNT = 0
 	BEGIN
 		INSERT INTO dbo.FieldsNutrients (FieldId, NutrientId, Amount, Goal,LastSampledYear) 

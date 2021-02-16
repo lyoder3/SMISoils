@@ -106,8 +106,36 @@ namespace SoilLibrary.DataAccess
                 p.Add("@Timestamp", model.Timestamp);
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                connection.Execute("dbo.spOperations_Insert", p, commandType: CommandType.StoredProcedure);
-                model.Id = p.Get<int>("@id");
+                // connection.Execute("dbo.spOperations_Insert", p, commandType: CommandType.StoredProcedure);
+                // model.Id = p.Get<int>("@id");
+
+                p = new DynamicParameters();
+                p.Add("@id", model.AnalysisId);
+
+                IList<AnalysisNutrientModel> models = connection.Query<AnalysisNutrientModel>
+                    ("dbo.spAnalysisNutrients_GetByAnalysisId", p, commandType: CommandType.StoredProcedure).ToList();
+
+                foreach (AnalysisNutrientModel analysisNutrientModel in models)
+                {
+                    decimal change = analysisNutrientModel.Amount * model.AppliedAmount;
+
+                    p = new DynamicParameters();
+                    p.Add("@FieldId", model.FieldId);
+                    p.Add("@NutrientId", analysisNutrientModel.NutrientId);
+
+                    FieldNutrientModel fnModel = connection
+                            .Query<FieldNutrientModel>("dbo.spFieldsNutrients_GetByIds", p, commandType: CommandType.StoredProcedure)
+                            .ToList().First();
+                    fnModel.Amount += change;
+
+                    p = new DynamicParameters();
+                    p.Add("@id", fnModel.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+                    p.Add("@Amount", fnModel.Amount);
+
+                    connection.Execute("dbo.spFieldsNutrients_UpdateForOperation", p, commandType: CommandType.StoredProcedure);
+
+                    Console.WriteLine();
+                }
             }
         }
 
@@ -154,6 +182,15 @@ namespace SoilLibrary.DataAccess
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spFieldsNutrients_Upsert", p, commandType: CommandType.StoredProcedure);
+
+                p = new DynamicParameters();
+                p.Add("@FieldId", fieldId);
+                p.Add("@NutrientId", model.NutrientId);
+                p.Add("@NewAmount", model.Amount);
+                p.Add("@SoilSampleId", model.SoilSampleId);
+                p.Add("@id", model.Id, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spLedger_Update", p, commandType: CommandType.StoredProcedure);
             }
         }
         public void CreateUnit(UnitModel model)

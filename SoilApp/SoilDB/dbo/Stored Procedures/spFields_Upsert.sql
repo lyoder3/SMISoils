@@ -1,5 +1,4 @@
-﻿
-CREATE PROCEDURE [dbo].[spFields_Upsert] 
+﻿CREATE PROCEDURE [dbo].[spFields_Upsert] 
 	-- Add the parameters for the stored procedure here
 	@FarmName varchar(25),
 	@Field char(3),

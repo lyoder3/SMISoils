@@ -103,6 +103,8 @@
     <Build Include="dbo\Stored Procedures\spOperations_Insert.sql" />
     <Build Include="dbo\Tables\FieldNutrientLedger.sql" />
     <Build Include="dbo\Stored Procedures\spLedger_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spAnalysisNutrients_GetByAnalysisId.sql" />
+    <Build Include="dbo\Stored Procedures\spFieldsNutrients_UpdateForOperation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SoilDB.publish.xml" />

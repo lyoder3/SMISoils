@@ -105,4 +105,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CreatedTimestamp" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="d2ebf120-5e84-4bae-81a7-ffed1ac057db" ChangeDateTime="02/16/2021 13:51:13">
+    <Property Name="ElementName" Value="[dbo].[FieldNutrientLedger].[Change]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[FieldNutrientLedger]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NewAmount" />
+  </Operation>
 </Operations>

@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dbo].[FieldNutrientLedger]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [FieldId] INT NOT NULL, 
     [NutrientId] INT NOT NULL, 
-    [Change] DECIMAL(8, 3) NOT NULL, 
+    [NewAmount] DECIMAL(8, 3) NOT NULL, 
     [SoilSampleId] INT NULL, 
     [OperationId] INT NULL
 )
