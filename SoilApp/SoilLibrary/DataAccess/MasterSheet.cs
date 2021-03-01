@@ -17,7 +17,7 @@ namespace SoilLibrary.DataAccess
             set { _googleSheet = value; }
         }
 
-        private static readonly string SpreadsheetId = GlobalConfig.CnnString("MasterSheetTest");
+        private static readonly string SpreadsheetId = GlobalConfig.CnnString("MasterSheetProduction");
 
         private static readonly string MasterSheetRange = "Master Sheet";
         private static readonly string ProductsSheetRange = "Products!A:D";
