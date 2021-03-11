@@ -106,8 +106,8 @@ namespace SoilLibrary.DataAccess
                 p.Add("@Timestamp", model.Timestamp);
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                // connection.Execute("dbo.spOperations_Insert", p, commandType: CommandType.StoredProcedure);
-                // model.Id = p.Get<int>("@id");
+                connection.Execute("dbo.spOperations_Insert", p, commandType: CommandType.StoredProcedure);
+                model.Id = p.Get<int>("@id");
 
                 p = new DynamicParameters();
                 p.Add("@id", model.AnalysisId);
@@ -129,10 +129,19 @@ namespace SoilLibrary.DataAccess
                     fnModel.Amount += change;
 
                     p = new DynamicParameters();
-                    p.Add("@id", fnModel.Id, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+                    p.Add("@id", fnModel.Id);
                     p.Add("@Amount", fnModel.Amount);
 
                     connection.Execute("dbo.spFieldsNutrients_UpdateForOperation", p, commandType: CommandType.StoredProcedure);
+
+                    p = new DynamicParameters();
+                    p.Add("@FieldId", model.FieldId);
+                    p.Add("@NutrientId", analysisNutrientModel.NutrientId);
+                    p.Add("@NewAmount", analysisNutrientModel.Amount);
+                    p.Add("@OperationId", model.Id);
+                    p.Add("@id", analysisNutrientModel.Id, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    connection.Execute("dbo.spLedger_Update", p, commandType: CommandType.StoredProcedure);
 
                     Console.WriteLine();
                 }
