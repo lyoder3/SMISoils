@@ -106,6 +106,7 @@
     <Build Include="dbo\Stored Procedures\spAnalysisNutrients_GetByAnalysisId.sql" />
     <Build Include="dbo\Stored Procedures\spFieldsNutrients_UpdateForOperation.sql" />
     <Build Include="dbo\Views\vLedger.sql" />
+    <Build Include="dbo\Views\vNutrientLevels.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SoilDB.publish.xml" />

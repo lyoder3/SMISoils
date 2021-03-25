@@ -24,6 +24,7 @@ namespace SoilLibrary.DataAccess
         private static readonly string UnitsSheetRange = "Units!A:B";
         private static readonly string NutrientsSheetRange = "Nutrients!A:D";
         private static readonly string AnalysisSheetRange = "Analysis";
+        private static readonly string FieldNutrientSheetRange = "FieldNutrients";
 
         public MasterSheet()
         {
@@ -106,6 +107,33 @@ namespace SoilLibrary.DataAccess
             processor.ProcessRows();
 
             GoogleSheet.WriteValues(processor.UpdateValues, SpreadsheetId, UnitsSheetRange);
+        }
+
+        public void WriteNutrientLevels()
+        {
+            IList<FieldNutrientOutputModel> data = GlobalConfig.Connection.GetFieldNutrients_All();
+
+            IList<IList<object>> writeValues = new List<IList<object>>();
+            string[] headers = new string[] { "Farm", "Field", "Acreage", "Nutrient", "Level", "Goal", "Last Sampled" };
+
+            writeValues.Add(headers);
+
+            foreach (var row in data)
+            {
+                object[] outputRow = new object[]
+                {
+                    row.Farm,
+                    row.Field,
+                    row.Acreage,
+                    row.Nutrient,
+                    row.Amount,
+                    row.Goal,
+                    row.LastSampledYear
+                };
+                writeValues.Add(outputRow);
+            }
+
+            GoogleSheet.WriteValues(writeValues, SpreadsheetId, FieldNutrientSheetRange);
         }
     }
 }

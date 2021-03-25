@@ -31,6 +31,7 @@ namespace SoilLibrary.DataAccess
         void CreateFieldNutrient(SoilSampleNutrientModel model, int fieldId, int lastSampleYear);
 
         SoilSampleNutrientModel GetFieldNutrient_ByIds(int fieldId, int nutrientId);
+        IList<FieldNutrientOutputModel> GetFieldNutrients_All();
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SoilLibrary.Utilities;
+using SoilLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,6 +66,7 @@ namespace SMISoilUI
                 SoilSampleProcessor sampleProcesor = new SoilSampleProcessor(selectedFilePaths);
                 sampleProcesor.ProcessSamples();
                 MessageBox.Show("Soil sample import successfull!");
+                GlobalConfig.MasterSheet.WriteNutrientLevels();
             }
         }
     }

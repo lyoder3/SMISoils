@@ -132,6 +132,7 @@
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Models\AnalysisNutrientModel.cs" />
     <Compile Include="Models\FieldNutrientModel.cs" />
+    <Compile Include="Models\FieldNutrientOutputModel.cs" />
     <Compile Include="Models\OperationNutrientModel.cs" />
     <Compile Include="Models\SoilSampleIntentionsModel.cs" />
     <Compile Include="Models\FilteredFieldNutrientModel.cs" />

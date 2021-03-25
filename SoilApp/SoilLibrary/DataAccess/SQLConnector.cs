@@ -402,6 +402,14 @@ namespace SoilLibrary.DataAccess
        
             }
         }
+        public IList<FieldNutrientOutputModel> GetFieldNutrients_All()
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                return connection.Query<FieldNutrientOutputModel>("SELECT * FROM dbo.vNutrientLevels").ToList();
+            }
+            
+        }
     }
    
 }

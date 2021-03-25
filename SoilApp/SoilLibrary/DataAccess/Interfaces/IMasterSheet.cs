@@ -9,7 +9,7 @@ namespace SoilLibrary.DataAccess
 
         void Update(MasterSheetTab sheetTab);
         void UpsertFieldsAndRotations();
-
         void UpsertUnits();
+        void WriteNutrientLevels();
     }
 }

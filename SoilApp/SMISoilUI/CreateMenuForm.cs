@@ -95,6 +95,7 @@ namespace SMISoilUI
             try
             {
                 GlobalConfig.OperationSheet.Update();
+                GlobalConfig.MasterSheet.WriteNutrientLevels();
             }
             catch (GoogleSheetUpdateException ex)
             {
