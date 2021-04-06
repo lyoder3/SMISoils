@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spLedger_Update]
 	@FieldId int,
 	@NutrientId int,
-	@NewAmount decimal(8,3),
+	@NewAmount decimal(8,3)=NULL,
 	@SoilSampleId int=NULL,
 	@OperationId int=NULL,
 	@id int=0 output
