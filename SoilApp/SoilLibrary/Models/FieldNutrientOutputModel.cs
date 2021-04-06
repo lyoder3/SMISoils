@@ -16,6 +16,7 @@ namespace SoilLibrary.Models
         public decimal Amount { get; set; }
         public decimal Goal { get; set; }
         public int LastSampledYear { get; set; }
+        public string NextCrop { get; set; }
 
     }
 }
