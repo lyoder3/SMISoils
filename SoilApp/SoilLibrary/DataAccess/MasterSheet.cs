@@ -114,7 +114,7 @@ namespace SoilLibrary.DataAccess
             IList<FieldNutrientOutputModel> data = GlobalConfig.Connection.GetFieldNutrients_All();
 
             IList<IList<object>> writeValues = new List<IList<object>>();
-            string[] headers = new string[] { "Farm", "Field", "Acreage", "Nutrient", "Level", "Goal", "Last Sampled" };
+            string[] headers = new string[] { "Farm", "Field", "Acreage", "Nutrient","Soil Sample Level (lbm/ac)", "Current Level (lbm/ac)", "Goal (lbm/ac)", "Last Sampled" };
 
             writeValues.Add(headers);
 
@@ -126,6 +126,7 @@ namespace SoilLibrary.DataAccess
                     row.Field,
                     row.Acreage,
                     row.Nutrient,
+                    row.SoilSampleAmount,
                     row.Amount,
                     row.Goal,
                     row.LastSampledYear

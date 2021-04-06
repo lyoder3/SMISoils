@@ -12,6 +12,7 @@ namespace SoilLibrary.Models
         public string Field { get; set; }
         public decimal Acreage { get; set; }
         public string Nutrient { get; set; }
+        public decimal SoilSampleAmount { get; set; }
         public decimal Amount { get; set; }
         public decimal Goal { get; set; }
         public int LastSampledYear { get; set; }
